@@ -1,0 +1,104 @@
+{
+  "id": "weitu",
+  "slug": "weitu",
+  "name": "唯兔云",
+  "logo": "/logos/weitu.svg",
+  "tagline": "节点丰富 · VLESS 协议 · 60+ 节点三网优化",
+  "badge": "多节点/三网优化",
+  "website": "https://guangs.v2yunvipaff.com/#/?code=xIutqOBA",
+  "affiliateUrl": "https://guangs.v2yunvipaff.com/#/?code=xIutqOBA",
+  "promoCode": "rabbit",
+  "discountText": "新用户 9 折优惠码：rabbit",
+  "openedYear": 2023,
+  "paymentMethods": [
+    "支付宝",
+    "微信",
+    "USDT"
+  ],
+  "description": "主打 VLESS 协议与 60+ 节点覆盖，具备三网优化与智能负载均衡调度能力，线路调度灵活，适合注重节点覆盖与多地区切换的用户。",
+  "price": {
+    "startingMonthly": 14.9,
+    "startingQuarterly": 42,
+    "startingYearly": 149,
+    "currency": "CNY"
+  },
+  "plans": [
+    {
+      "name": "月付基础版",
+      "price": 14.9,
+      "traffic": "100GB",
+      "period": "月付",
+      "speedLimit": "300Mbps",
+      "devices": 3
+    },
+    {
+      "name": "月付尊享版",
+      "price": 29.9,
+      "traffic": "260GB",
+      "period": "月付",
+      "speedLimit": "600Mbps",
+      "devices": 5
+    }
+  ],
+  "protocols": [
+    "VLESS",
+    "Shadowsocks"
+  ],
+  "routes": [
+    "三网优化中转",
+    "智能负载均衡"
+  ],
+  "regions": [
+    "香港",
+    "日本",
+    "新加坡",
+    "美国",
+    "台湾",
+    "韩国",
+    "英国"
+  ],
+  "clients": [
+    "Clash",
+    "Shadowrocket",
+    "v2rayN",
+    "sing-box"
+  ],
+  "ai": {
+    "status": "pending",
+    "chatgpt": true,
+    "claude": false,
+    "gemini": true,
+    "note": "当前资料未提供统一实测，建议以实际节点测试为准"
+  },
+  "streaming": {
+    "status": "pending",
+    "netflix": true,
+    "disney": false,
+    "youtube": true,
+    "note": "建议以实际节点测试为准"
+  },
+  "trial": {
+    "supported": false,
+    "details": "支持 14.9 元月付体验"
+  },
+  "unlimitedPlan": false,
+  "status": "normal",
+  "rating": 4.6,
+  "lastVerified": "2026-08-11",
+  "advantages": [
+    "60+ 节点分布广泛，冷门与主流地区覆盖全",
+    "三网优化与智能负载均衡调度",
+    "月付 14.9 元门槛亲民"
+  ],
+  "warnings": [
+    "AI/流媒体能力尚未建立统一实测矩阵",
+    "敏感时期可能存在部分中转节点波动"
+  ],
+  "sources": [
+    {
+      "type": "measured",
+      "date": "2026-08-11",
+      "desc": "实测节点连通性记录"
+    }
+  ]
+}

@@ -1,0 +1,281 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getAllAnswers, getAnswerBySlug } from '../../data/answersData';
+
+export async function getStaticPaths() {
+  const articles = getAllAnswers();
+  return articles.map((article) => ({
+    params: { slug: article.slug },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+
+const pageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: article.title,
+  description: article.quickAnswer,
+  articleSection: article.category,
+  inLanguage: 'zh-CN',
+  wordCount: article.wordCount,
+  datePublished: `${article.lastUpdated}T08:00:00+08:00`,
+  dateModified: `${article.lastUpdated}T12:00:00+08:00`,
+  author: {
+    '@type': 'Organization',
+    name: '机场搜网络技术评测组',
+    url: 'https://jichangsou.club/about/',
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: '机场搜 Decision Hub',
+    url: 'https://jichangsou.club',
+    logo: {
+      '@type': 'ImageObject',
+      url: 'https://jichangsou.club/favicon.svg',
+    },
+  },
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': `https://jichangsou.club/answers/${article.slug}/`,
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: article.title,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: article.quickAnswer,
+      },
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title={`${article.title} | 30秒结论与深度解决指南 - 机场搜`}
+  description={article.quickAnswer}
+  schema={{ ...pageSchema, ...faqSchema }}
+>
+  <div class="py-10 md:py-14">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-xs text-[var(--text-dim)] mb-6">
+        <a href="/" class="hover:text-emerald-600 dark:hover:text-emerald-400">首页</a>
+        <span>/</span>
+        <a href="/answers/" class="hover:text-emerald-600 dark:hover:text-emerald-400">问题中心</a>
+        <span>/</span>
+        <span class="text-[var(--text-main)]">{article.category}</span>
+      </nav>
+
+      <!-- Article Header -->
+      <div class="mb-8">
+        <div class="flex flex-wrap items-center gap-2 mb-3">
+          <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+            {article.category}
+          </span>
+          <span class="text-xs text-[var(--text-dim)] font-mono">
+            ⏱️ {article.readingTime}
+          </span>
+          <span class="text-xs text-[var(--text-dim)] font-mono">
+            📅 更新于 {article.lastUpdated}
+          </span>
+          <span class="text-xs text-emerald-600 dark:text-emerald-400 font-mono">
+            ✍️ 机场搜技术评测组
+          </span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[var(--text-main)] tracking-tight leading-tight">
+          {article.title}
+        </h1>
+      </div>
+
+      <!-- 01. 30-Second Fast Answer (GEO Direct Answer Hero Box) -->
+      <div class="rounded-3xl bg-emerald-950/20 border-2 border-emerald-500/40 p-6 sm:p-8 mb-8 shadow-xl">
+        <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-extrabold text-sm mb-3 tracking-wide">
+          <span>⚡</span>
+          <span>30 秒核心结论与直接答复 (DIRECT ANSWER)</span>
+        </div>
+        <p class="text-sm sm:text-base text-[var(--text-main)] font-medium leading-relaxed">
+          {article.quickAnswer}
+        </p>
+      </div>
+
+      <!-- Article Fast Jump Navigation -->
+      <div class="p-4 rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] mb-8 flex flex-wrap items-center justify-between gap-3 text-xs">
+        <div class="flex items-center gap-2 font-bold text-[var(--text-main)]">
+          <span>📑</span>
+          <span>内容导航：</span>
+        </div>
+        <div class="flex flex-wrap items-center gap-2 text-[var(--text-dim)]">
+          <a href="#deep-dive" class="hover:text-emerald-600 dark:hover:text-emerald-400">深度原理与排查</a>
+          <span>•</span>
+          <a href="#traps" class="hover:text-emerald-600 dark:hover:text-emerald-400">避坑要点</a>
+          <span>•</span>
+          <a href="#next-steps" class="hover:text-emerald-600 dark:hover:text-emerald-400">下一步选型推荐</a>
+        </div>
+      </div>
+
+      <!-- 02. Deep Comprehensive 1500+ Word Article Body -->
+      <article id="deep-dive" class="p-6 sm:p-8 rounded-3xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-6 mb-8 shadow-sm text-sm text-[var(--text-muted)] leading-relaxed">
+        <div class="article-content space-y-5" set:html={article.contentHtml} />
+      </article>
+
+      <!-- 03. Traps to Avoid (~300 Words) -->
+      <article id="traps" class="p-6 sm:p-8 rounded-3xl bg-[var(--bg-surface)] border border-amber-500/20 bg-amber-500/5 space-y-4 mb-10">
+        <h2 class="text-lg font-bold text-amber-800 dark:text-amber-300 flex items-center gap-2">
+          <span>⚠️</span>
+          常见误区与避坑建议
+        </h2>
+        <ul class="space-y-2 text-xs text-[var(--text-muted)]">
+          {article.traps.map((trap) => (
+            <li class="flex items-start gap-2">
+              <span class="text-amber-500 font-bold">•</span>
+              <span>{trap}</span>
+            </li>
+          ))}
+        </ul>
+      </article>
+
+      <!-- 04. User Journey Progressive Next Steps (最高级原则：准备好最合理的下一步) -->
+      <div id="next-steps" class="space-y-6 pt-4 border-t border-[var(--border-subtle)]">
+        <div class="text-center max-w-xl mx-auto mb-6">
+          <span class="text-xs font-semibold px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+            🎯 完整用户决策旅程 (NEXT STEPS)
+          </span>
+          <h2 class="text-lg sm:text-xl font-extrabold text-[var(--text-main)] mt-2">
+            为您准备好的下一步需求承接
+          </h2>
+          <p class="text-xs text-[var(--text-dim)] mt-1">
+            每个页面既要解决一个问题，也要为用户准备好最合理的下一步
+          </p>
+        </div>
+
+        <!-- 1. Related Questions Grid -->
+        <div class="p-6 rounded-3xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-4">
+          <h3 class="text-sm font-bold text-[var(--text-main)] flex items-center gap-2">
+            <span>🔗</span>
+            相关延伸高频问题
+          </h3>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            {article.relatedQuestions.map((rq) => (
+              <a
+                href={`/answers/${rq.slug}/`}
+                class="p-3.5 rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)] hover:border-emerald-500/40 hover:bg-[var(--bg-surface-elevated)] transition-all group block"
+              >
+                <div class="text-xs font-semibold text-[var(--text-main)] group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors line-clamp-2 leading-snug">
+                  {rq.title}
+                </div>
+                <div class="mt-2 text-[10px] text-emerald-600 dark:text-emerald-400 flex items-center justify-between">
+                  <span>阅读解析</span>
+                  <span>→</span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <!-- 2. Dual Progressive Next Action Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <!-- Topic Hub Card -->
+          <div class="p-6 rounded-3xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex flex-col justify-between space-y-4">
+            <div>
+              <div class="text-[11px] font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wider mb-1">
+                TOPIC HUB · 专题中心
+              </div>
+              <h3 class="text-base font-bold text-[var(--text-main)]">{article.nextHub.title}</h3>
+              <p class="text-xs text-[var(--text-dim)] mt-1 leading-relaxed">{article.nextHub.desc}</p>
+            </div>
+            <a
+              href={article.nextHub.url}
+              class="w-full py-2.5 rounded-xl bg-[var(--bg-card)] hover:bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-[var(--border-subtle)] hover:border-blue-500/30 text-xs font-bold text-center block transition-colors"
+            >
+              {article.nextHub.cta}
+            </a>
+          </div>
+
+          <!-- Selection & Commercial Gateway Card -->
+          <div class="p-6 rounded-3xl bg-[var(--bg-surface)] border border-emerald-500/30 flex flex-col justify-between space-y-4 shadow-lg shadow-emerald-950/5">
+            <div>
+              <div class="text-[11px] font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider mb-1">
+                DECISION & RECOMMEND · 选择指南
+              </div>
+              <h3 class="text-base font-bold text-[var(--text-main)]">{article.nextSelection.title}</h3>
+              <p class="text-xs text-[var(--text-dim)] mt-1 leading-relaxed">{article.nextSelection.desc}</p>
+            </div>
+            <a
+              href={article.nextSelection.url}
+              class="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold text-center block shadow transition-colors"
+            >
+              {article.nextSelection.cta}
+            </a>
+          </div>
+        </div>
+
+        <!-- 3. Bottom Philosophy Footer Pill -->
+        <div class="p-4 rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] text-center text-[11px] text-[var(--text-dim)] font-medium">
+          💡 <strong>机场搜 Decision Hub 承诺：</strong>本站严禁在信息型与教程页面进行强买强卖。我们致力于先帮您把技术问题解决透彻，再为您提供客观透明的多维选型参考。
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style is:global>
+  .article-content h2 {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--text-main);
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .article-content h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-top: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  .article-content p {
+    margin-bottom: 0.85rem;
+    line-height: 1.75;
+  }
+  .article-content ul, .article-content ol {
+    margin-bottom: 1rem;
+    padding-left: 1.25rem;
+    space-y: 0.4rem;
+  }
+  .article-content ul {
+    list-style-type: disc;
+  }
+  .article-content ol {
+    list-style-type: decimal;
+  }
+  .article-content li {
+    margin-bottom: 0.35rem;
+    line-height: 1.6;
+  }
+  .article-content strong {
+    color: var(--text-main);
+    font-weight: 700;
+  }
+  .article-content code {
+    font-family: monospace;
+    font-size: 0.85em;
+    background: var(--bg-card);
+    padding: 0.15rem 0.4rem;
+    border-radius: 0.375rem;
+    border: 1px solid var(--border-subtle);
+    color: #059669;
+  }
+  html.dark .article-content code {
+    color: #34d399;
+  }
+</style>

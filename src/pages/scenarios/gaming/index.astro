@@ -1,0 +1,104 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getAllAirports } from '../../../utils/airports';
+
+const airports = getAllAirports();
+const gamingAirports = airports.filter((a) =>
+  a.routes.some((r) => r.includes('专线') || r.includes('IEPL'))
+);
+---
+
+<BaseLayout
+  title="外服游戏与电竞加速专用机场推荐 | 2026 超低延迟与 0 丢包专线 - 机场搜"
+  description="专为 Steam、PS5、Switch、GTA5、Apex 英雄、Valorant 亚服/日服打造的外服游戏专线机场推荐。精选物理 IEPL 内网专线，延迟低至 35ms，告别跳 ping 与卡顿掉线。"
+>
+  <div class="py-12 md:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-xs text-[var(--text-dim)] mb-6">
+        <a href="/" class="hover:text-emerald-600 dark:hover:text-emerald-400">首页</a>
+        <span>/</span>
+        <a href="/scenarios/office/" class="hover:text-emerald-600 dark:hover:text-emerald-400">场景中心</a>
+        <span>/</span>
+        <span class="text-[var(--text-main)]">外服游戏电竞专线</span>
+      </nav>
+
+      <div class="max-w-3xl mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-semibold border border-emerald-500/20 mb-3">
+          <span>🎮</span>
+          <span>GAMING & ULTRA-LOW LATENCY</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--text-main)] tracking-tight">
+          外服游戏与电竞联机加速专属机场推荐
+        </h1>
+        <p class="text-sm sm:text-base text-[var(--text-muted)] mt-3 leading-relaxed">
+          普通中转梯子在玩游戏时往往存在高达 5% 的偶发丢包与 Jitter 延迟抖动。本专题严选<strong>物理点对点 IEPL 专线</strong>服务商，专为 Steam、Epic、战网、主机平台及日服/港服电竞竞技优化，全程极稳 0 丢包。
+        </p>
+      </div>
+
+      <!-- Gaming Metric Standards -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
+        <div class="p-5 rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-1">
+          <div class="text-xs text-[var(--text-dim)]">港服物理延迟</div>
+          <div class="text-2xl font-extrabold text-emerald-600 dark:text-emerald-400 font-mono">35 - 45 ms</div>
+          <p class="text-[11px] text-[var(--text-muted)]">深圳/广州入口点对点内网直连</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-1">
+          <div class="text-xs text-[var(--text-dim)]">日服/韩服延迟</div>
+          <div class="text-2xl font-extrabold text-emerald-600 dark:text-emerald-400 font-mono">55 - 75 ms</div>
+          <p class="text-[11px] text-[var(--text-muted)]">上海入口直连东京 Equinix 机房</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-1">
+          <div class="text-xs text-[var(--text-dim)]">全天平均丢包率</div>
+          <div class="text-2xl font-extrabold text-emerald-600 dark:text-emerald-400 font-mono">＜ 0.2%</div>
+          <p class="text-[11px] text-[var(--text-muted)]">物理专线告别跳 Ping 与断线重连</p>
+        </div>
+      </div>
+
+      <!-- Gaming Airport Cards -->
+      <div class="space-y-4 mb-12">
+        <h2 class="text-xl font-bold text-[var(--text-main)]">
+          精选电竞级低延迟专线机场
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {gamingAirports.slice(0, 6).map((ap) => (
+            <div class="p-6 rounded-3xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] hover:border-emerald-500/40 flex flex-col justify-between space-y-4 shadow-lg group transition-all">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <h3 class="text-base font-bold text-[var(--text-main)] group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                    {ap.name}
+                  </h3>
+                  <span class="text-sm font-mono font-bold text-emerald-600 dark:text-emerald-400">
+                    ¥{ap.price.startingMonthly}/月起
+                  </span>
+                </div>
+                <p class="text-xs text-[var(--text-dim)] leading-relaxed mb-3">
+                  {ap.tagline}
+                </p>
+                <div class="flex flex-wrap gap-1">
+                  {ap.routes.map((r) => (
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-mono">
+                      {r}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div class="pt-3 border-t border-[var(--border-subtle)] flex items-center justify-between">
+                <a href={`/airport/${ap.slug}/`} class="text-xs font-semibold text-emerald-600 dark:text-emerald-400 hover:underline">
+                  查看测速数据 →
+                </a>
+                <a
+                  href={ap.affiliateUrl}
+                  target="_blank"
+                  rel="nofollow noopener"
+                  class="text-xs px-3 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold transition-colors"
+                >
+                  官网直达 ↗
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

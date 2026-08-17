@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import AirportCard from '../../../components/airport/AirportCard.astro';
+import { getAllAirports } from '../../../utils/airports';
+
+const officeAirports = getAllAirports().filter((a) => a.routes.some((r) => r.includes('专线')));
+---
+
+<BaseLayout
+  title="跨境办公与出海开发网络解决方案 | GitHub / Zoom / Google 加速 - 机场搜"
+  description="面向远程办公、出海企业、跨境电商与软件工程师的专线网络选择与环境配置指南。"
+>
+  <div class="py-12 md:py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-xs text-[var(--text-dim)] mb-6">
+        <a href="/" class="hover:text-emerald-400">首页</a>
+        <span>/</span>
+        <span class="text-[var(--text-main)]">跨境办公专题</span>
+      </nav>
+
+      <div class="max-w-3xl mb-8">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-semibold border border-cyan-500/20 mb-3">
+          <span>💼</span>
+          <span>CROSS-BORDER PRODUCTIVITY & DEV</span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[var(--text-main)] tracking-tight mb-3">
+          跨境办公与出海开发网络指南
+        </h1>
+        <p class="text-sm text-[var(--text-muted)] leading-relaxed">
+          研发与办公环境要求 0 丢包率、极低 TCP 抖动与稳定的长连接。普通公网中转容易遭遇偶发丢包导致 SSH 断连与 Git Push 失败，推荐使用企业级 IEPL 专线。
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {officeAirports.slice(0, 6).map((airport) => (
+          <AirportCard airport={airport} />
+        ))}
+      </div>
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import AirportCard from '../../../components/airport/AirportCard.astro';
+import { getAllAirports } from '../../../utils/airports';
+
+const cheapAirports = getAllAirports().filter((a) => a.price.startingMonthly <= 20);
+---
+
+<BaseLayout
+  title="便宜好用机场推荐 (¥10~20) | 高性价比机场合集 - 机场搜"
+  description="精选月费在 ¥10~20 之间的高性价比中转与轻量专线机场。单 GB 单价低、流量充裕，适合流媒体追剧与日常大流量下载。"
+>
+  <div class="py-12 md:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-xs text-[var(--text-dim)] mb-6">
+        <a href="/" class="hover:text-emerald-400">首页</a>
+        <span>/</span>
+        <a href="/airports/" class="hover:text-emerald-400">机场库</a>
+        <span>/</span>
+        <span class="text-[var(--text-main)]">便宜高性价比</span>
+      </nav>
+
+      <div class="max-w-3xl mb-8">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs font-semibold border border-blue-500/20 mb-3">
+          <span>💰</span>
+          <span>BUDGET & VALUE COLLECTION</span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[var(--text-main)] tracking-tight mb-3">
+          便宜高性价比机场合集 (¥10~20/月)
+        </h1>
+        <p class="text-sm text-[var(--text-muted)] leading-relaxed">
+          针对学生党、轻度用户与大流量下载需求精心筛选。拒绝垃圾 1 元跑路盘，所有收录商家均具备稳定的中转入口与清晰的流量配额。
+        </p>
+      </div>
+
+      <!-- FAQ Accordion for pSEO -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
+        <div class="p-4 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-subtle)]">
+          <h3 class="text-xs font-bold text-[var(--text-main)] mb-1">Q: 便宜机场会不会经常连不上？</h3>
+          <p class="text-xs text-[var(--text-dim)]">A: 本合集收录的平价机场均经过多入口 BGP 负载均衡测试，晚高峰虽可能有轻微限速，但连通率有充分保障。</p>
+        </div>
+        <div class="p-4 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-subtle)]">
+          <h3 class="text-xs font-bold text-[var(--text-main)] mb-1">Q: 建议月付还是年付？</h3>
+          <p class="text-xs text-[var(--text-dim)]">A: 平价机场强烈建议按月支付（¥10~15/月），试错成本极低，用着满意再考虑季付。</p>
+        </div>
+      </div>
+
+      <!-- Airport Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {cheapAirports.map((airport) => (
+          <AirportCard airport={airport} />
+        ))}
+      </div>
+    </div>
+  </div>
+</BaseLayout>

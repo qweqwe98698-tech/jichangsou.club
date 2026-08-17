@@ -1,0 +1,91 @@
+{
+  "id": "guangnianti",
+  "slug": "guangnianti",
+  "name": "光年梯",
+  "logo": "/logos/guangnianti.svg",
+  "tagline": "18 元档 · 110GB · VLESS 协议 · IEPL 专线",
+  "badge": "18元档/110GB",
+  "website": "https://guangs.gntaff.com/#/?code=X1FoxjGE",
+  "affiliateUrl": "https://guangs.gntaff.com/#/?code=X1FoxjGE",
+  "promoCode": "gnt6666",
+  "discountText": "优惠码：gnt6666",
+  "openedYear": 2025,
+  "paymentMethods": [
+    "支付宝",
+    "微信",
+    "USDT"
+  ],
+  "description": "2025年开业新锐机场，18 元档提供 110GB 流量，采用 VLESS 协议与 IEPL 专线，支持常见 AI 工具与主流流媒体。",
+  "price": {
+    "startingMonthly": 18,
+    "startingQuarterly": 50,
+    "startingYearly": 180,
+    "currency": "CNY"
+  },
+  "plans": [
+    {
+      "name": "标准月付",
+      "price": 18,
+      "traffic": "110GB",
+      "period": "月付",
+      "speedLimit": "350Mbps",
+      "devices": 3
+    }
+  ],
+  "protocols": [
+    "VLESS",
+    "Shadowsocks"
+  ],
+  "routes": [
+    "IEPL 专线"
+  ],
+  "regions": [
+    "香港",
+    "日本",
+    "新加坡",
+    "美国"
+  ],
+  "clients": [
+    "Clash",
+    "Shadowrocket",
+    "v2rayN",
+    "sing-box"
+  ],
+  "ai": {
+    "status": "vendor",
+    "chatgpt": true,
+    "claude": true,
+    "gemini": true,
+    "note": "支持常见 AI 工具"
+  },
+  "streaming": {
+    "status": "vendor",
+    "netflix": true,
+    "disney": true,
+    "youtube": true,
+    "note": "支持常见流媒体"
+  },
+  "trial": {
+    "supported": false,
+    "details": "支持 18 元月付"
+  },
+  "unlimitedPlan": false,
+  "status": "normal",
+  "rating": 4.6,
+  "lastVerified": "2026-08-11",
+  "advantages": [
+    "18元档提供 110GB，比同价位多 10GB 流量",
+    "VLESS + IEPL 组合，延迟平稳",
+    "支持第三方客户端订阅导入"
+  ],
+  "warnings": [
+    "2025年新开业，运营沉淀时间尚短"
+  ],
+  "sources": [
+    {
+      "type": "measured",
+      "date": "2026-08-11",
+      "desc": "实测节点连通性记录"
+    }
+  ]
+}

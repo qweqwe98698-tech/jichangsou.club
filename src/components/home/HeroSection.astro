@@ -1,0 +1,99 @@
+---
+import HeroSearch from './HeroSearch';
+import { getAllAirports } from '../../utils/airports';
+
+const airports = getAllAirports();
+---
+
+<section class="relative pt-12 pb-16 md:pt-20 md:pb-24 overflow-hidden border-b border-[var(--border-subtle)]">
+  <!-- Airport Runway Night Ambient Background -->
+  <div class="absolute inset-0 airport-grid-bg opacity-40 pointer-events-none"></div>
+  
+  <!-- Subtle Airport Runway Lights / Beacon Gradient Glow -->
+  <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-b from-emerald-600/15 via-emerald-900/5 to-transparent blur-3xl -z-10 pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="text-center max-w-3xl mx-auto mb-8 md:mb-10">
+      <!-- Badge Pill -->
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold mb-4 animate-in fade-in">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 beacon-pulse"></span>
+        <span>Decision Hub 决策枢纽 · 真实数据驱动</span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-[var(--text-main)] mb-4 leading-tight">
+        机场搜
+      </h1>
+
+      <!-- Slogan / Subtitle -->
+      <p class="text-lg sm:text-xl md:text-2xl font-bold text-emerald-400 mb-3 tracking-wide">
+        搜机场 · 查机场 · 比机场 · 选机场
+      </p>
+
+      <!-- Purpose & Promise -->
+      <p class="text-sm sm:text-base text-[var(--text-muted)] max-w-3xl mx-auto leading-relaxed">
+        机场推荐、机场导航、机场评测、机场测速与机场对比一站搞定，结合真实使用体验、线路表现和场景需求，帮你快速找到稳定、好用、性价比高的机场。
+      </p>
+    </div>
+
+    <!-- Core Interactive 4-Mode Search Hub -->
+    <div class="mb-12">
+      <HeroSearch client:load airports={airports} />
+    </div>
+
+    <!-- Platform Data Integrity Metrics (Transparent & Realistic Clickable Cards) -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mx-auto text-left">
+      <a
+        href="/airports/"
+        class="group p-3.5 sm:p-4 rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] hover:border-emerald-500/40 hover:bg-[var(--bg-surface-elevated)] hover:shadow-md transition-all flex items-center gap-3 cursor-pointer"
+      >
+        <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 group-hover:scale-110 flex items-center justify-center shrink-0 border border-emerald-500/20 font-bold transition-transform">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div>
+          <div class="text-[11px] text-[var(--text-dim)] group-hover:text-[var(--text-muted)] transition-colors">核验机场库</div>
+          <div class="text-sm sm:text-base font-bold text-[var(--text-main)] group-hover:text-emerald-600 dark:group-hover:text-emerald-400 font-mono transition-colors">16+ 精选收录</div>
+        </div>
+      </a>
+
+      <a
+        href="/clients/"
+        class="group p-3.5 sm:p-4 rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] hover:border-blue-500/40 hover:bg-[var(--bg-surface-elevated)] hover:shadow-md transition-all flex items-center gap-3 cursor-pointer"
+      >
+        <div class="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 group-hover:scale-110 flex items-center justify-center shrink-0 border border-blue-500/20 font-bold transition-transform">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg>
+        </div>
+        <div>
+          <div class="text-[11px] text-[var(--text-dim)] group-hover:text-[var(--text-muted)] transition-colors">协议与客户端</div>
+          <div class="text-sm sm:text-base font-bold text-[var(--text-main)] group-hover:text-blue-600 dark:group-hover:text-blue-400 font-mono transition-colors">全协议覆查</div>
+        </div>
+      </a>
+
+      <a
+        href="/radar/"
+        class="group p-3.5 sm:p-4 rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] hover:border-purple-500/40 hover:bg-[var(--bg-surface-elevated)] hover:shadow-md transition-all flex items-center gap-3 cursor-pointer"
+      >
+        <div class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400 group-hover:scale-110 flex items-center justify-center shrink-0 border border-purple-500/20 font-bold transition-transform">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2z"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <div>
+          <div class="text-[11px] text-[var(--text-dim)] group-hover:text-[var(--text-muted)] transition-colors">真实核验周期</div>
+          <div class="text-sm sm:text-base font-bold text-[var(--text-main)] group-hover:text-purple-600 dark:group-hover:text-purple-400 font-mono transition-colors">7 天定期复测</div>
+        </div>
+      </a>
+
+      <a
+        href="/data-methodology/"
+        class="group p-3.5 sm:p-4 rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] hover:border-amber-500/40 hover:bg-[var(--bg-surface-elevated)] hover:shadow-md transition-all flex items-center gap-3 cursor-pointer"
+      >
+        <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 group-hover:scale-110 flex items-center justify-center shrink-0 border border-amber-500/20 font-bold transition-transform">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div>
+          <div class="text-[11px] text-[var(--text-dim)] group-hover:text-[var(--text-muted)] transition-colors">数据真实性</div>
+          <div class="text-sm sm:text-base font-bold text-[var(--text-main)] group-hover:text-amber-600 dark:group-hover:text-amber-400 font-mono transition-colors">100% 拒绝虚构</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>

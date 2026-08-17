@@ -1,0 +1,103 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonicalURL?: string;
+  type?: 'website' | 'article';
+  schema?: Record<string, any>;
+}
+
+const {
+  title = '机场搜 - 2026稳定机场推荐与评测导航 | 便宜专线/Clash小火箭节点订阅对比',
+  description = '机场搜 (jichangsou.club) 专业的机场推荐、评测导航与节点对比平台。收录16+实测专线机场，提供2026稳定便宜梯子推荐、Clash/小火箭订阅配置、真实节点测速与智能选机场向导。',
+  image = 'https://jichangsou.club/og-image.png',
+  canonicalURL = Astro.url.href,
+  type = 'website',
+  schema,
+} = Astro.props;
+
+const defaultOrganizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: '机场搜',
+  alternateName: 'JICHANGSOU Decision Hub',
+  url: 'https://jichangsou.club',
+  logo: 'https://jichangsou.club/favicon.svg',
+  description: '专业的机场代理与网络决策枢纽，多维数据驱动，真实客观透明。',
+  knowsAbout: [
+    '网络代理协议 (VLESS / Shadowsocks / Trojan / Hysteria2)',
+    'IEPL / IPLC 跨境企业级专线',
+    'Clash / Shadowrocket / Surge / sing-box 客户端配置',
+    '流媒体与 AI 工具 (ChatGPT / Claude / Netflix) 网络解锁'
+  ],
+  publishingPrinciples: 'https://jichangsou.club/editorial-policy/',
+};
+
+const defaultWebSiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: '机场搜 Decision Hub',
+  url: 'https://jichangsou.club',
+  inLanguage: 'zh-CN',
+  publisher: {
+    '@type': 'Organization',
+    name: '机场搜技术评测组',
+    url: 'https://jichangsou.club/about/',
+  },
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: 'https://jichangsou.club/airports?q={search_term_string}',
+    'query-input': 'required name=search_term_string',
+  },
+};
+---
+
+<!-- Global Metadata -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="canonical" href={canonicalURL} />
+<meta name="generator" content={Astro.generator} />
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={image} />
+<meta property="og:site_name" content="机场搜" />
+<meta property="og:locale" content="zh_CN" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={canonicalURL} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={image} />
+
+<!-- Theme Script for Dual Mode (Default Light) -->
+<script is:inline>
+  const theme = (() => {
+    if (typeof localStorage !== 'undefined' && localStorage.getItem('jcs-theme')) {
+      return localStorage.getItem('jcs-theme');
+    }
+    return 'light';
+  })();
+  if (theme === 'dark') {
+    document.documentElement.classList.add('dark');
+  } else {
+    document.documentElement.classList.remove('dark');
+  }
+</script>
+
+<!-- Structured Data -->
+<script type="application/ld+json" set:html={JSON.stringify(defaultOrganizationSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(defaultWebSiteSchema)} />
+{schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}

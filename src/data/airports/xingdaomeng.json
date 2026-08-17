@@ -1,0 +1,100 @@
+{
+  "id": "xingdaomeng",
+  "slug": "xingdaomeng",
+  "name": "星岛梦",
+  "logo": "/logos/xingdaomeng.svg",
+  "tagline": "低价年付 · 套餐丰富 · 不限时套餐",
+  "badge": "不限时/低价",
+  "website": "https://guangs.xingdaomeng.com/#/?code=1TynBYnR",
+  "affiliateUrl": "https://guangs.xingdaomeng.com/#/?code=1TynBYnR",
+  "promoCode": "nmw888",
+  "discountText": "新人注册 9 折优惠码：nmw888",
+  "openedYear": 2020,
+  "paymentMethods": [
+    "支付宝",
+    "微信",
+    "USDT"
+  ],
+  "description": "2020年开业老牌机场，套餐类型丰富，提供年付低至约 8 元/月套餐以及不限时按量计费套餐，适合低预算与备用小流量用户。",
+  "price": {
+    "startingMonthly": 8,
+    "startingQuarterly": 25,
+    "startingYearly": 96,
+    "currency": "CNY"
+  },
+  "plans": [
+    {
+      "name": "年付轻量包",
+      "price": 96,
+      "traffic": "60GB/月 (折合8元/月)",
+      "period": "年付",
+      "speedLimit": "200Mbps",
+      "devices": 2
+    },
+    {
+      "name": "不限时按量包",
+      "price": 68,
+      "traffic": "200GB (不限时)",
+      "period": "一次性",
+      "speedLimit": "300Mbps",
+      "devices": 3
+    }
+  ],
+  "protocols": [
+    "Shadowsocks",
+    "VLESS"
+  ],
+  "routes": [
+    "企业级内网专线"
+  ],
+  "regions": [
+    "香港",
+    "日本",
+    "新加坡",
+    "美国"
+  ],
+  "clients": [
+    "Clash",
+    "Shadowrocket",
+    "v2rayN",
+    "sing-box"
+  ],
+  "ai": {
+    "status": "vendor",
+    "chatgpt": true,
+    "claude": false,
+    "gemini": true,
+    "note": "支持常规 ChatGPT 访问"
+  },
+  "streaming": {
+    "status": "vendor",
+    "netflix": true,
+    "disney": false,
+    "youtube": true,
+    "note": "支持 YouTube 与部分 Netflix"
+  },
+  "trial": {
+    "supported": false,
+    "details": "支持 9 折优惠码体验"
+  },
+  "unlimitedPlan": true,
+  "status": "normal",
+  "rating": 4.6,
+  "lastVerified": "2026-08-11",
+  "advantages": [
+    "提供不限时按量计费包，用多少扣多少不浪费",
+    "年付折算仅 8 元/月，长期持有成本极低",
+    "支持第三方客户端订阅导入"
+  ],
+  "warnings": [
+    "8 元/月为年付折算价格，不应与常规月付直接混淆",
+    "月流量 60GB 适合轻度网页浏览与社交"
+  ],
+  "sources": [
+    {
+      "type": "measured",
+      "date": "2026-08-11",
+      "desc": "实测节点连通性记录"
+    }
+  ]
+}

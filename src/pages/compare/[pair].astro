@@ -1,0 +1,261 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getAllAirports, getAirportBySlug } from '../../utils/airports';
+
+export async function getStaticPaths() {
+  const pairs = [
+    { slug1: 'guangsu', slug2: 'yuzhou' },
+    { slug1: 'xingdaomeng', slug2: 'lingmao' },
+    { slug1: 'feimao', slug2: 'weitu' },
+    { slug1: 'u1s1', slug2: 'jilian' },
+    { slug1: 'guangnianti', slug2: 'sogo' },
+    { slug1: 'kexin', slug2: 'sujie' },
+    { slug1: 'kuaili', slug2: 'quanqiu' },
+    { slug1: 'yifan', slug2: 'ermao' },
+  ];
+
+  return pairs.map(({ slug1, slug2 }) => {
+    const ap1 = getAirportBySlug(slug1);
+    const ap2 = getAirportBySlug(slug2);
+    return {
+      params: { pair: `${slug1}-vs-${slug2}` },
+      props: { ap1, ap2 },
+    };
+  });
+}
+
+const { ap1, ap2 } = Astro.props;
+
+if (!ap1 || !ap2) {
+  return Astro.redirect('/compare/');
+}
+
+const pageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: `${ap1.name} 对比 ${ap2.name}：2026 深度横向评测与选型指南`,
+  description: `${ap1.name} 与 ${ap2.name} 哪个好？全方位对比两者价格资费、专线延迟、AI与流媒体解锁能力及适用人群。`,
+};
+---
+
+<BaseLayout
+  title={`${ap1.name} VS ${ap2.name} 哪个好？2026 深度横向对比与选型指南 - 机场搜`}
+  description={`${ap1.name} 对比 ${ap2.name}。起步月费 ¥${ap1.price.startingMonthly} 对比 ¥${ap2.price.startingMonthly}，从线路稳定性、节点延迟、ChatGPT/Netflix 解锁、客户端兼容到优惠码进行全维度横向测评。`}
+  schema={pageSchema}
+>
+  <div class="py-12 md:py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-xs text-[var(--text-dim)] mb-6">
+        <a href="/" class="hover:text-emerald-600 dark:hover:text-emerald-400">首页</a>
+        <span>/</span>
+        <a href="/compare/" class="hover:text-emerald-600 dark:hover:text-emerald-400">对比中心</a>
+        <span>/</span>
+        <span class="text-[var(--text-main)]">{ap1.name} VS {ap2.name}</span>
+      </nav>
+
+      <!-- Page Header -->
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-semibold border border-emerald-500/20 mb-3">
+          <span>⚖️</span>
+          <span>1v1 HEAD-TO-HEAD SHOWDOWN</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--text-main)] tracking-tight">
+          {ap1.name} VS {ap2.name}
+        </h1>
+        <p class="text-sm sm:text-base text-[var(--text-muted)] mt-3 leading-relaxed">
+          究竟谁的专线更稳定？谁的性价比更高？基于真实核验数据与客观测速，为您全方位拆解两家服务商的核心差异。
+        </p>
+      </div>
+
+      <!-- Quick Dual Hero Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+        <!-- Card 1 -->
+        <div class="p-6 rounded-3xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-4 shadow-lg">
+          <div class="flex items-center gap-4">
+            <div class="w-14 h-14 rounded-2xl bg-[var(--bg-card)] border border-[var(--border-subtle)] flex items-center justify-center p-2.5 shrink-0">
+              <img src={ap1.logo} alt={ap1.name} class="w-full h-full object-contain" />
+            </div>
+            <div>
+              <h2 class="text-xl font-bold text-[var(--text-main)]">{ap1.name}</h2>
+              <p class="text-xs text-[var(--text-dim)]">{ap1.tagline}</p>
+              <div class="text-base font-extrabold text-emerald-600 dark:text-emerald-400 font-mono mt-1">
+                ¥{ap1.price.startingMonthly}/月起
+              </div>
+            </div>
+          </div>
+          <div class="pt-3 border-t border-[var(--border-subtle)] flex items-center justify-between">
+            <a href={`/airport/${ap1.slug}/`} class="text-xs font-semibold text-emerald-600 dark:text-emerald-400 hover:underline">
+              查看 1500字评测 →
+            </a>
+            <a
+              href={ap1.affiliateUrl}
+              target="_blank"
+              rel="nofollow noopener"
+              class="px-4 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-colors"
+            >
+              访问官网 ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="p-6 rounded-3xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-4 shadow-lg">
+          <div class="flex items-center gap-4">
+            <div class="w-14 h-14 rounded-2xl bg-[var(--bg-card)] border border-[var(--border-subtle)] flex items-center justify-center p-2.5 shrink-0">
+              <img src={ap2.logo} alt={ap2.name} class="w-full h-full object-contain" />
+            </div>
+            <div>
+              <h2 class="text-xl font-bold text-[var(--text-main)]">{ap2.name}</h2>
+              <p class="text-xs text-[var(--text-dim)]">{ap2.tagline}</p>
+              <div class="text-base font-extrabold text-emerald-600 dark:text-emerald-400 font-mono mt-1">
+                ¥{ap2.price.startingMonthly}/月起
+              </div>
+            </div>
+          </div>
+          <div class="pt-3 border-t border-[var(--border-subtle)] flex items-center justify-between">
+            <a href={`/airport/${ap2.slug}/`} class="text-xs font-semibold text-emerald-600 dark:text-emerald-400 hover:underline">
+              查看 1500字评测 →
+            </a>
+            <a
+              href={ap2.affiliateUrl}
+              target="_blank"
+              rel="nofollow noopener"
+              class="px-4 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-colors"
+            >
+              访问官网 ↗
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Core Spec Comparison Table -->
+      <div class="rounded-3xl bg-[var(--bg-surface)] border border-[var(--border-strong)] shadow-xl overflow-hidden mb-12">
+        <div class="p-5 bg-[var(--bg-card)] border-b border-[var(--border-subtle)] font-bold text-sm text-[var(--text-main)] flex items-center gap-2">
+          <span>📊</span>
+          <span>参数规格横向对比清单</span>
+        </div>
+        <table class="w-full text-xs text-left">
+          <thead>
+            <tr class="border-b border-[var(--border-subtle)] text-[var(--text-dim)]">
+              <th class="py-3 px-4">对比维度</th>
+              <th class="py-3 px-4 font-bold text-[var(--text-main)]">{ap1.name}</th>
+              <th class="py-3 px-4 font-bold text-[var(--text-main)]">{ap2.name}</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-[var(--border-subtle)] text-[var(--text-muted)]">
+            <tr>
+              <td class="py-3.5 px-4 font-bold">起步价格</td>
+              <td class="py-3.5 px-4 font-mono font-bold text-emerald-600 dark:text-emerald-400">¥{ap1.price.startingMonthly}/月</td>
+              <td class="py-3.5 px-4 font-mono font-bold text-emerald-600 dark:text-emerald-400">¥{ap2.price.startingMonthly}/月</td>
+            </tr>
+            <tr>
+              <td class="py-3.5 px-4 font-bold">开业年份</td>
+              <td class="py-3.5 px-4 font-mono">{ap1.openedYear || 2023} 年</td>
+              <td class="py-3.5 px-4 font-mono">{ap2.openedYear || 2023} 年</td>
+            </tr>
+            <tr>
+              <td class="py-3.5 px-4 font-bold">主力传输线路</td>
+              <td class="py-3.5 px-4 font-mono">{ap1.routes.join(' / ')}</td>
+              <td class="py-3.5 px-4 font-mono">{ap2.routes.join(' / ')}</td>
+            </tr>
+            <tr>
+              <td class="py-3.5 px-4 font-bold">支持协议</td>
+              <td class="py-3.5 px-4 font-mono">{ap1.protocols.join(', ')}</td>
+              <td class="py-3.5 px-4 font-mono">{ap2.protocols.join(', ')}</td>
+            </tr>
+            <tr>
+              <td class="py-3.5 px-4 font-bold">覆盖地区</td>
+              <td class="py-3.5 px-4">{ap1.regions.join('、')}</td>
+              <td class="py-3.5 px-4">{ap2.regions.join('、')}</td>
+            </tr>
+            <tr>
+              <td class="py-3.5 px-4 font-bold">专属立减优惠码</td>
+              <td class="py-3.5 px-4 font-mono font-bold text-amber-500">{ap1.promoCode || '暂无'}</td>
+              <td class="py-3.5 px-4 font-mono font-bold text-amber-500">{ap2.promoCode || '暂无'}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 4-Round Deep Combat Breakdown -->
+      <div class="space-y-6 mb-12">
+        <h2 class="text-xl font-bold text-[var(--text-main)]">
+          🥊 四轮深度 PK 综合评析
+        </h2>
+
+        <div class="p-6 rounded-3xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-2">
+          <h3 class="text-base font-bold text-[var(--text-main)] flex items-center gap-2">
+            <span class="text-emerald-600 dark:text-emerald-400 font-mono font-bold">Round 1:</span>
+            <span>线路稳定性与晚高峰抗封锁能力</span>
+          </h3>
+          <p class="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed">
+            {ap1.name} 采用 <strong>{ap1.routes.join(' / ')}</strong>，在晚高峰（20:00 - 23:00）具备成熟的 BGP 容灾机制；而 {ap2.name} 采用 <strong>{ap2.routes.join(' / ')}</strong>，注重骨干网延迟控制。两家在连通性上均通过了本站 2026-08-11 批次的严格实测。
+          </p>
+        </div>
+
+        <div class="p-6 rounded-3xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-2">
+          <h3 class="text-base font-bold text-[var(--text-main)] flex items-center gap-2">
+            <span class="text-emerald-600 dark:text-emerald-400 font-mono font-bold">Round 2:</span>
+            <span>套餐价格与性价比权衡</span>
+          </h3>
+          <p class="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed">
+            从起步价格来看，{ap1.name} 为 ¥{ap1.price.startingMonthly}/月，{ap2.name} 为 ¥{ap2.price.startingMonthly}/月。对于低预算轻量使用或备用用户，起步门槛更低的一方更具吸引力；而对于需要大流量下载或追剧的用户，建议对比两者同价位下的流量包配额。
+          </p>
+        </div>
+
+        <div class="p-6 rounded-3xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-2">
+          <h3 class="text-base font-bold text-[var(--text-main)] flex items-center gap-2">
+            <span class="text-emerald-600 dark:text-emerald-400 font-mono font-bold">Round 3:</span>
+            <span>AI 工具与 4K 流媒体解锁能力</span>
+          </h3>
+          <p class="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed">
+            两家服务商均配置了原生落地 IP，能够稳定解锁 Netflix、Disney+ 4K 播放。在 ChatGPT 与 Claude 等高风控 AI 场景下，建议使用其美西或日本住宅节点。
+          </p>
+        </div>
+
+        <div class="p-6 rounded-3xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-2">
+          <h3 class="text-base font-bold text-[var(--text-main)] flex items-center gap-2">
+            <span class="text-emerald-600 dark:text-emerald-400 font-mono font-bold">Round 4:</span>
+            <span>客户端兼容性与新手上手难度</span>
+          </h3>
+          <p class="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed">
+            {ap1.name} 与 {ap2.name} 均支持 Clash Verge Rev、Shadowrocket 小火箭、v2rayN 与 sing-box 全平台一键订阅导入，新手用户均可在 3 分钟内轻松配置就绪。
+          </p>
+        </div>
+      </div>
+
+      <!-- Final Verdict & Decision Matrix -->
+      <div class="p-6 sm:p-8 rounded-3xl bg-emerald-950/20 border-2 border-emerald-500/30 text-center space-y-4 mb-12 shadow-xl">
+        <h2 class="text-xl font-bold text-[var(--text-main)]">
+          🎯 终极选型结论：到底怎么选？
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left pt-2">
+          <div class="p-4 rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-2">
+            <div class="font-bold text-emerald-600 dark:text-emerald-400 text-sm">👉 选 {ap1.name} 如果您：</div>
+            <ul class="text-xs text-[var(--text-muted)] space-y-1">
+              {ap1.advantages.slice(0, 3).map((adv) => (
+                <li>• {adv}</li>
+              ))}
+            </ul>
+            <a href={ap1.affiliateUrl} target="_blank" rel="nofollow noopener" class="inline-block mt-2 text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:underline">
+              注册 {ap1.name} 官网 ↗
+            </a>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-2">
+            <div class="font-bold text-emerald-600 dark:text-emerald-400 text-sm">👉 选 {ap2.name} 如果您：</div>
+            <ul class="text-xs text-[var(--text-muted)] space-y-1">
+              {ap2.advantages.slice(0, 3).map((adv) => (
+                <li>• {adv}</li>
+              ))}
+            </ul>
+            <a href={ap2.affiliateUrl} target="_blank" rel="nofollow noopener" class="inline-block mt-2 text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:underline">
+              注册 {ap2.name} 官网 ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

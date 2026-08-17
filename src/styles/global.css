@@ -1,0 +1,147 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-main: #f6f8f6;
+    --bg-surface: #ffffff;
+    --bg-surface-elevated: #eef2ef;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f1f5f2;
+    --border-subtle: #e1e8e3;
+    --border-strong: #cbd7cf;
+    --text-main: #0c1813;
+    --text-muted: #4e6359;
+    --text-dim: #7a9186;
+    --accent-primary: #059669;
+    --accent-primary-hover: #047857;
+    --accent-glow: rgba(5, 150, 105, 0.12);
+    --badge-bg: #ecfdf5;
+    --badge-border: #a7f3d0;
+    --badge-text: #065f46;
+  }
+
+  html.dark {
+    --bg-main: #07120e;
+    --bg-surface: #0d1e18;
+    --bg-surface-elevated: #132b22;
+    --bg-card: #0f241d;
+    --bg-card-hover: #153228;
+    --border-subtle: #193a2e;
+    --border-strong: #245241;
+    --text-main: #f3f5f3;
+    --text-muted: #8fa69c;
+    --text-dim: #5c746a;
+    --accent-primary: #10b981;
+    --accent-primary-hover: #059669;
+    --accent-glow: rgba(16, 185, 129, 0.15);
+    --badge-bg: rgba(16, 185, 129, 0.1);
+    --badge-border: rgba(16, 185, 129, 0.25);
+    --badge-text: #34d399;
+  }
+
+  body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+}
+
+/* Airport Radar & Runway Dynamic Elements */
+.airport-grid-bg {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(16, 185, 129, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(16, 185, 129, 0.08) 1px, transparent 1px);
+}
+
+html.dark .airport-grid-bg {
+  background-image: 
+    linear-gradient(to right, rgba(25, 58, 46, 0.3) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(25, 58, 46, 0.3) 1px, transparent 1px);
+}
+
+@keyframes radarSweep {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.radar-sweep {
+  animation: radarSweep 6s linear infinite;
+  transform-origin: center center;
+}
+
+@keyframes beaconPulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.95);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+.beacon-pulse {
+  animation: beaconPulse 2.5s ease-in-out infinite;
+}
+
+/* Glassmorphism Surface */
+.glass-panel {
+  background: rgba(13, 30, 24, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+}
+
+html:not(.dark) .glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+}
+
+/* Custom Scrollbar for matrix tables */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
+}
+
+/* Radar Soundwave Equalizer Pulse */
+@keyframes equalizerPulse {
+  0% {
+    transform: scaleY(0.35);
+    opacity: 0.65;
+    filter: brightness(0.9);
+  }
+  50% {
+    transform: scaleY(1.3);
+    opacity: 1;
+    filter: brightness(1.35) drop-shadow(0 0 4px rgba(16, 185, 129, 0.6));
+  }
+  100% {
+    transform: scaleY(0.75);
+    opacity: 0.85;
+    filter: brightness(1.1);
+  }
+}

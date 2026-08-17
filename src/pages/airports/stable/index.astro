@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import AirportCard from '../../../components/airport/AirportCard.astro';
+import { getAllAirports } from '../../../utils/airports';
+
+const stableAirports = getAllAirports().filter((a) => a.routes.some((r) => r.includes('专线') || r.includes('IEPL')));
+---
+
+<BaseLayout
+  title="稳定好用机场推荐 | IEPL 内网专线与高 SLA 专线机场 - 机场搜"
+  description="精选采用纯内网专线 (IEPL/IPLC) 的稳定机场服务商。晚高峰超低延迟、零丢包抖动，适合跨境远程办公、海外学术与游戏加速。"
+>
+  <div class="py-12 md:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-xs text-[var(--text-dim)] mb-6">
+        <a href="/" class="hover:text-emerald-400">首页</a>
+        <span>/</span>
+        <a href="/airports/" class="hover:text-emerald-400">机场库</a>
+        <span>/</span>
+        <span class="text-[var(--text-main)]">稳定专线</span>
+      </nav>
+
+      <div class="max-w-3xl mb-8">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold border border-emerald-500/20 mb-3">
+          <span>🛡️</span>
+          <span>HIGH SLA & IEPL DEDICATED</span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[var(--text-main)] tracking-tight mb-3">
+          稳定专线机场推荐 (IEPL / IPLC)
+        </h1>
+        <p class="text-sm text-[var(--text-muted)] leading-relaxed">
+          不走公网国际出口，晚高峰（20:00-23:00）免受骨干网波动干扰。适合对稳定性、低抖动有严苛要求的生产力与远程办公用户。
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
+        <div class="p-4 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-subtle)]">
+          <h3 class="text-xs font-bold text-[var(--text-main)] mb-1">Q: IEPL 专线为什么不容易断连？</h3>
+          <p class="text-xs text-[var(--text-dim)]">A: IEPL 走跨境物理光纤内网传输，数据不出公网边界，因此几乎免受外部网络波动和阻断影响。</p>
+        </div>
+        <div class="p-4 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-subtle)]">
+          <h3 class="text-xs font-bold text-[var(--text-main)] mb-1">Q: 专线机场的价格区间通常是多少？</h3>
+          <p class="text-xs text-[var(--text-dim)]">A: 纯正专线由于物理带宽成本高，月费起步通常在 ¥25~¥50/月 左右。</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {stableAirports.map((airport) => (
+          <AirportCard airport={airport} />
+        ))}
+      </div>
+    </div>
+  </div>
+</BaseLayout>

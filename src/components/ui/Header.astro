@@ -1,0 +1,184 @@
+---
+const currentPath = Astro.url.pathname;
+
+const navItems = [
+  { name: '机场推荐', href: '/recommend/' },
+  { name: '机场库', href: '/airports/' },
+  { name: '优惠情报', href: '/deals/' },
+  { name: '机场对比', href: '/compare/' },
+  { name: '机场雷达', href: '/radar/' },
+  { name: '客户端', href: '/clients/' },
+  { name: '问题库', href: '/answers/' },
+];
+---
+
+<header class="sticky top-0 z-40 w-full border-b border-[var(--border-subtle)] bg-[var(--bg-main)]/90 backdrop-blur-md transition-colors duration-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <!-- Brand Logo -->
+    <div class="flex items-center gap-6">
+      <a href="/" class="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded-lg p-1">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-600 to-emerald-950 flex items-center justify-center border border-emerald-500/30 shadow-sm group-hover:scale-105 transition-transform duration-200">
+          <svg class="w-5 h-5 text-emerald-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>
+          </svg>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-lg font-bold tracking-tight text-[var(--text-main)] group-hover:text-emerald-400 transition-colors flex items-center gap-1.5">
+            机场搜
+            <span class="text-[10px] uppercase font-semibold px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">HUB</span>
+          </span>
+          <span class="text-[11px] text-[var(--text-dim)] font-mono -mt-1 tracking-wider">jichangsou.club</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-1 lg:gap-2 ml-4">
+        {navItems.map((item) => {
+          const isActive = currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href));
+          return (
+            <a
+              href={item.href}
+              class={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+                isActive
+                  ? 'text-emerald-400 bg-emerald-500/10 font-semibold'
+                  : 'text-[var(--text-muted)] hover:text-[var(--text-main)] hover:bg-[var(--bg-surface)]'
+              }`}
+            >
+              {item.name}
+            </a>
+          );
+        })}
+      </nav>
+    </div>
+
+    <!-- Right Controls -->
+    <div class="flex items-center gap-2.5 sm:gap-3">
+      <!-- Search Shortcut -->
+      <a
+        href="/#hero-search"
+        class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[var(--bg-surface)] border border-[var(--border-subtle)] text-xs text-[var(--text-dim)] hover:text-[var(--text-main)] hover:border-emerald-500/40 transition-all"
+        title="按 / 快速聚焦搜索"
+      >
+        <svg class="w-3.5 h-3.5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <span>快速搜索</span>
+        <kbd class="px-1.5 py-0.5 rounded bg-[var(--bg-main)] border border-[var(--border-subtle)] text-[10px] font-mono">⌘K</kbd>
+      </a>
+
+      <!-- Theme Switcher -->
+      <button
+        id="theme-toggle-btn"
+        type="button"
+        aria-label="切换主题颜色"
+        class="w-9 h-9 flex items-center justify-center rounded-lg bg-[var(--bg-surface)] border border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-emerald-400 hover:border-emerald-500/30 transition-colors"
+      >
+        <!-- Sun (Show in dark) -->
+        <svg id="theme-icon-sun" class="w-4 h-4 hidden dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <!-- Moon (Show in light) -->
+        <svg id="theme-icon-moon" class="w-4 h-4 block dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+
+      <!-- Primary CTA: 开始选机场 -->
+      <a
+        href="/#decision-wizard"
+        class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-semibold tracking-wide shadow-sm hover:shadow-emerald-900/30 transition-all active:scale-95"
+      >
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m9 18 6-6-6-6"/>
+        </svg>
+        <span>开始选机场</span>
+      </a>
+
+      <!-- Mobile Hamburger Button -->
+      <button
+        id="mobile-menu-btn"
+        type="button"
+        aria-label="打开移动端菜单"
+        class="md:hidden w-9 h-9 flex items-center justify-center rounded-lg bg-[var(--bg-surface)] border border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-main)]"
+      >
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-menu-drawer" class="hidden md:hidden border-b border-[var(--border-subtle)] bg-[var(--bg-surface)] px-4 py-4 space-y-2">
+    {navItems.map((item) => (
+      <a
+        href={item.href}
+        class="block px-3 py-2.5 rounded-lg text-sm font-medium text-[var(--text-main)] hover:bg-emerald-500/10 hover:text-emerald-400 transition-colors"
+      >
+        {item.name}
+      </a>
+    ))}
+    <div class="pt-2 border-t border-[var(--border-subtle)] flex items-center justify-between">
+      <span class="text-xs text-[var(--text-dim)]">主题切换</span>
+      <button id="mobile-theme-btn" class="px-3 py-1.5 rounded-lg bg-[var(--bg-main)] text-xs text-[var(--text-muted)] border border-[var(--border-subtle)]">
+        切换深/浅色
+      </button>
+    </div>
+  </div>
+</header>
+
+<script>
+  // Theme Toggle logic (Default Light Mode)
+  const initThemeToggle = () => {
+    const btn = document.getElementById('theme-toggle-btn');
+    const mobileBtn = document.getElementById('mobile-theme-btn');
+    const sunIcon = document.getElementById('theme-icon-sun');
+    const moonIcon = document.getElementById('theme-icon-moon');
+
+    const updateIcons = (isDark: boolean) => {
+      if (sunIcon && moonIcon) {
+        if (isDark) {
+          sunIcon.classList.remove('hidden');
+          moonIcon.classList.add('hidden');
+        } else {
+          sunIcon.classList.add('hidden');
+          moonIcon.classList.remove('hidden');
+        }
+      }
+    };
+
+    const toggle = () => {
+      const isDark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('jcs-theme', isDark ? 'dark' : 'light');
+      updateIcons(isDark);
+    };
+
+    btn?.addEventListener('click', toggle);
+    mobileBtn?.addEventListener('click', toggle);
+
+    updateIcons(document.documentElement.classList.contains('dark'));
+  };
+
+  // Mobile Menu logic
+  const initMobileMenu = () => {
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const drawer = document.getElementById('mobile-menu-drawer');
+    menuBtn?.addEventListener('click', () => {
+      drawer?.classList.toggle('hidden');
+    });
+  };
+
+  initThemeToggle();
+  initMobileMenu();
+</script>

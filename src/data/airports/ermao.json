@@ -1,0 +1,91 @@
+{
+  "id": "ermao",
+  "slug": "ermao",
+  "name": "二猫云",
+  "logo": "/logos/ermao.svg",
+  "tagline": "20 元档 · 130GB · VLESS · IEPL 专线",
+  "badge": "20元档专线",
+  "website": "https://guangs.2maoyunaff.cc/#/?code=7mjvgGbW",
+  "affiliateUrl": "https://guangs.2maoyunaff.cc/#/?code=7mjvgGbW",
+  "promoCode": "ermao5555",
+  "discountText": "优惠码：ermao5555",
+  "openedYear": 2023,
+  "paymentMethods": [
+    "支付宝",
+    "微信",
+    "USDT"
+  ],
+  "description": "2023年开业的专线机场，采用 VLESS 协议与 IEPL 专线，20 元月付提供 130GB 流量，处于 U1S1 与一翻云之间，适合每月中等流量需求用户。",
+  "price": {
+    "startingMonthly": 20,
+    "startingQuarterly": 58,
+    "startingYearly": 200,
+    "currency": "CNY"
+  },
+  "plans": [
+    {
+      "name": "进阶专线月付",
+      "price": 20,
+      "traffic": "130GB",
+      "period": "月付",
+      "speedLimit": "400Mbps",
+      "devices": 3
+    }
+  ],
+  "protocols": [
+    "VLESS",
+    "Shadowsocks"
+  ],
+  "routes": [
+    "IEPL 专线"
+  ],
+  "regions": [
+    "香港",
+    "日本",
+    "新加坡",
+    "美国"
+  ],
+  "clients": [
+    "Clash",
+    "Shadowrocket",
+    "v2rayN",
+    "sing-box"
+  ],
+  "ai": {
+    "status": "vendor",
+    "chatgpt": true,
+    "claude": false,
+    "gemini": true,
+    "note": "品牌资料显示支持相关使用场景"
+  },
+  "streaming": {
+    "status": "vendor",
+    "netflix": true,
+    "disney": false,
+    "youtube": true,
+    "note": "支持常见主流媒体"
+  },
+  "trial": {
+    "supported": false,
+    "details": "支持 20 元月付体验"
+  },
+  "unlimitedPlan": false,
+  "status": "normal",
+  "rating": 4.6,
+  "lastVerified": "2026-08-11",
+  "advantages": [
+    "20元档提供 130GB 流量，规格均衡",
+    "VLESS + IEPL 专线组合，晚高峰稳定",
+    "支持第三方客户端订阅导入"
+  ],
+  "warnings": [
+    "AI/流媒体深度能力需结合具体节点测试"
+  ],
+  "sources": [
+    {
+      "type": "measured",
+      "date": "2026-08-11",
+      "desc": "实测节点连通性记录"
+    }
+  ]
+}

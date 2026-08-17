@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AirportCard from '../../components/airport/AirportCard.astro';
+import { getAllAirports } from '../../utils/airports';
+
+const airports = getAllAirports();
+---
+
+<BaseLayout
+  title="机场数据库 | 真实多维参数检索 - 机场搜 jichangsou.club"
+  description="全网机场真实核验数据库。支持按价格区间、专线中转线路、协议类型、ChatGPT/流媒体解锁与客户端全面筛选。"
+>
+  <div class="py-12 md:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-xs text-[var(--text-dim)] mb-6">
+        <a href="/" class="hover:text-emerald-400">首页</a>
+        <span>/</span>
+        <span class="text-[var(--text-main)]">机场库</span>
+      </nav>
+
+      <!-- Page Header -->
+      <div class="max-w-3xl mb-10">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[var(--text-main)] tracking-tight mb-3">
+          机场数据库
+        </h1>
+        <p class="text-sm text-[var(--text-muted)] leading-relaxed">
+          收录经团队实际核验或公开数据交叉比对的机场服务商。拒绝虚假节点数，所有价格与参数均为最新周期采录。
+        </p>
+      </div>
+
+      <!-- Quick Filter Pills -->
+      <div class="flex flex-wrap items-center gap-2 mb-8 pb-4 border-b border-[var(--border-subtle)] text-xs">
+        <span class="text-[var(--text-dim)] font-medium">快速筛选：</span>
+        <a href="/airports/" class="px-3 py-1.5 rounded-lg bg-emerald-600 text-white font-medium">全部 ({airports.length})</a>
+        <a href="/airports/cheap/" class="px-3 py-1.5 rounded-lg bg-[var(--bg-surface)] border border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-emerald-400">¥10~20 性价比</a>
+        <a href="/airports/stable/" class="px-3 py-1.5 rounded-lg bg-[var(--bg-surface)] border border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-emerald-400">IEPL 专线</a>
+        <a href="/airports/chatgpt/" class="px-3 py-1.5 rounded-lg bg-[var(--bg-surface)] border border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-emerald-400">ChatGPT 解锁</a>
+        <a href="/airports/netflix/" class="px-3 py-1.5 rounded-lg bg-[var(--bg-surface)] border border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-emerald-400">流媒体 4K</a>
+      </div>
+
+      <!-- Airport Cards Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {airports.map((airport) => (
+          <AirportCard airport={airport} />
+        ))}
+      </div>
+    </div>
+  </div>
+</BaseLayout>

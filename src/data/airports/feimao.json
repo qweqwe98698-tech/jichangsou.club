@@ -1,0 +1,93 @@
+{
+  "id": "feimao",
+  "slug": "feimao",
+  "name": "飞猫云",
+  "logo": "/logos/feimao.svg",
+  "tagline": "低价小流量 · 年付折合7元 · IEPL 专线",
+  "badge": "轻量低门槛",
+  "website": "https://guangs.flycataff.com/#/?code=6uq0Xe9y",
+  "affiliateUrl": "https://guangs.flycataff.com/#/?code=6uq0Xe9y",
+  "promoCode": "flycat888",
+  "discountText": "新用户季付及以上 8 折优惠码：flycat888",
+  "openedYear": 2023,
+  "paymentMethods": [
+    "支付宝",
+    "微信",
+    "USDT"
+  ],
+  "description": "主打 IEPL 专线和低门槛小流量套餐，年付折合约 7 元/月，包含 50GB 流量，覆盖常见流媒体与 AI 工具，适合日常流量不大的轻度用户。",
+  "price": {
+    "startingMonthly": 7,
+    "startingQuarterly": 24,
+    "startingYearly": 84,
+    "currency": "CNY"
+  },
+  "plans": [
+    {
+      "name": "轻量年付包",
+      "price": 84,
+      "traffic": "50GB/月 (折合7元/月)",
+      "period": "年付",
+      "speedLimit": "200Mbps",
+      "devices": 2
+    }
+  ],
+  "protocols": [
+    "Shadowsocks",
+    "VLESS"
+  ],
+  "routes": [
+    "IEPL 专线",
+    "小流量优化"
+  ],
+  "regions": [
+    "香港",
+    "日本",
+    "新加坡",
+    "美国"
+  ],
+  "clients": [
+    "Clash",
+    "Shadowrocket",
+    "v2rayN",
+    "自研客户端"
+  ],
+  "ai": {
+    "status": "vendor",
+    "chatgpt": true,
+    "claude": false,
+    "gemini": true,
+    "note": "厂商资料显示支持常规 AI 访问"
+  },
+  "streaming": {
+    "status": "vendor",
+    "netflix": true,
+    "disney": false,
+    "youtube": true,
+    "note": "支持 YouTube 与主流媒体"
+  },
+  "trial": {
+    "supported": false,
+    "details": "支持季付 8 折优惠体验"
+  },
+  "unlimitedPlan": false,
+  "status": "normal",
+  "rating": 4.5,
+  "lastVerified": "2026-08-11",
+  "advantages": [
+    "年付折算仅 7 元/月，试错门槛极低",
+    "专线传输，轻度网页浏览体验顺畅",
+    "提供自研客户端"
+  ],
+  "warnings": [
+    "7 元/月为年付折算价格，需按年购买",
+    "50GB 流量不适合高码率 4K/8K 视频重度下载"
+  ],
+  "sources": [
+    {
+      "type": "measured",
+      "date": "2026-08-11",
+      "desc": "实测节点连通性记录"
+    }
+  ]
+}

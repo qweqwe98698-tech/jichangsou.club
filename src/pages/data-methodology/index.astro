@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="数据核验方法论与采集规范 | 机场搜"
+  description="了解机场搜如何采集、交叉比对与周期性测试机场网络参数与可用性数据。"
+>
+  <div class="py-12 md:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-xs text-[var(--text-dim)] mb-6">
+        <a href="/" class="hover:text-emerald-400">首页</a>
+        <span>/</span>
+        <span class="text-[var(--text-main)]">数据方法论</span>
+      </nav>
+
+      <div class="mb-10">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[var(--text-main)] tracking-tight mb-3">
+          数据核验方法论 (Data Methodology)
+        </h1>
+        <p class="text-sm text-[var(--text-muted)]">
+          公开、透明、可复现的评测与数据维护体系
+        </p>
+      </div>
+
+      <div class="space-y-6 text-sm text-[var(--text-muted)] leading-relaxed">
+        <div class="p-6 rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-3">
+          <h2 class="text-base font-bold text-[var(--text-main)]">一、数据分级体系</h2>
+          <div class="space-y-2 text-xs">
+            <div class="p-3 rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)]">
+              <strong class="text-emerald-400">Verified (已核验)：</strong>团队实际购买套餐，在晚高峰（20:00-23:00）连续多日测试连通性与流媒体/AI支持。
+            </div>
+            <div class="p-3 rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)]">
+              <strong class="text-blue-400">Reported (公开资料)：</strong>源自服务商官网公开公告或套餐说明页。
+            </div>
+            <div class="p-3 rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)]">
+              <strong class="text-amber-400">Pending (待核验)：</strong>处于调研阶段或数据源不足，不做主观臆断。
+            </div>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-3">
+          <h2 class="text-base font-bold text-[var(--text-main)]">二、测试环境标准</h2>
+          <p class="text-xs">
+            测试网络涵盖中国电信 1000M 宽带、中国联通 500M 宽带与中国移动 5G 蜂窝网络。重点考察晚高峰时段的 TCP 握手延迟、抖动率与 TLS 握手成功率。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

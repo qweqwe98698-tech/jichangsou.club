@@ -1,0 +1,132 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getAllAirports } from '../../utils/airports';
+
+const all = getAllAirports();
+---
+
+<BaseLayout
+  title="机场多维参数对比系统 | 选机场不踩坑 - 机场搜"
+  description="支持 2~4 家机场横向对比。从价格、线路架构、解锁能力、协议与客户端支持全面剖析。"
+>
+  <div class="py-12 md:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-xs text-[var(--text-dim)] mb-6">
+        <a href="/" class="hover:text-emerald-400">首页</a>
+        <span>/</span>
+        <span class="text-[var(--text-main)]">机场对比</span>
+      </nav>
+
+      <div class="max-w-3xl mb-8">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[var(--text-main)] tracking-tight mb-3">
+          机场多维参数对比
+        </h1>
+        <p class="text-sm text-[var(--text-muted)] leading-relaxed">
+          将关键技术参数、价格与真实服务状态横向展开，差异一目了然。
+        </p>
+      </div>
+
+      <!-- Compare Table Matrix -->
+      <div class="rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-strong)] shadow-xl overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-xs sm:text-sm text-left border-collapse">
+            <thead>
+              <tr class="bg-[var(--bg-card)] border-b border-[var(--border-subtle)]">
+                <th class="p-4 sm:p-5 font-bold text-[var(--text-main)] min-w-[140px]">对比项目</th>
+                {all.slice(0, 4).map((a) => (
+                  <th class="p-4 sm:p-5 font-bold text-[var(--text-main)] min-w-[180px] text-center border-l border-[var(--border-subtle)]">
+                    <div class="flex flex-col items-center gap-1.5">
+                      <span class="text-base sm:text-lg">{a.name}</span>
+                      <span class="text-xs font-normal text-[var(--text-dim)]">{a.tagline}</span>
+                    </div>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-[var(--border-subtle)] text-[var(--text-muted)]">
+              <tr>
+                <td class="p-4 font-semibold text-[var(--text-dim)]">起步月费</td>
+                {all.slice(0, 4).map((a) => (
+                  <td class="p-4 text-center font-mono font-bold text-emerald-400 text-base border-l border-[var(--border-subtle)]">
+                    ¥{a.price.startingMonthly}/月
+                  </td>
+                ))}
+              </tr>
+              <tr>
+                <td class="p-4 font-semibold text-[var(--text-dim)]">线路架构</td>
+                {all.slice(0, 4).map((a) => (
+                  <td class="p-4 text-center border-l border-[var(--border-subtle)] font-medium text-[var(--text-main)]">
+                    {a.routes.join(' + ')}
+                  </td>
+                ))}
+              </tr>
+              <tr>
+                <td class="p-4 font-semibold text-[var(--text-dim)]">支持协议</td>
+                {all.slice(0, 4).map((a) => (
+                  <td class="p-4 text-center border-l border-[var(--border-subtle)] font-mono text-xs">
+                    {a.protocols.join(', ')}
+                  </td>
+                ))}
+              </tr>
+              <tr>
+                <td class="p-4 font-semibold text-[var(--text-dim)]">ChatGPT / Claude</td>
+                {all.slice(0, 4).map((a) => (
+                  <td class="p-4 text-center border-l border-[var(--border-subtle)]">
+                    {a.ai.chatgpt && a.ai.claude ? (
+                      <span class="text-emerald-400 font-semibold">✅ 全支持</span>
+                    ) : (
+                      <span class="text-amber-400 font-semibold">⚡ 支持 ChatGPT</span>
+                    )}
+                  </td>
+                ))}
+              </tr>
+              <tr>
+                <td class="p-4 font-semibold text-[var(--text-dim)]">流媒体 4K 解锁</td>
+                {all.slice(0, 4).map((a) => (
+                  <td class="p-4 text-center border-l border-[var(--border-subtle)]">
+                    {a.streaming.netflix ? (
+                      <span class="text-emerald-400 font-semibold">✅ 支持 Netflix/YT</span>
+                    ) : (
+                      <span class="text-[var(--text-dim)]">待核验</span>
+                    )}
+                  </td>
+                ))}
+              </tr>
+              <tr>
+                <td class="p-4 font-semibold text-[var(--text-dim)]">体验政策</td>
+                {all.slice(0, 4).map((a) => (
+                  <td class="p-4 text-center border-l border-[var(--border-subtle)] text-xs">
+                    {a.trial.supported ? a.trial.details : '无免费试用'}
+                  </td>
+                ))}
+              </tr>
+              <tr>
+                <td class="p-4 font-semibold text-[var(--text-dim)]">核验日期</td>
+                {all.slice(0, 4).map((a) => (
+                  <td class="p-4 text-center border-l border-[var(--border-subtle)] font-mono text-xs text-[var(--text-dim)]">
+                    {a.lastVerified}
+                  </td>
+                ))}
+              </tr>
+              <tr class="bg-[var(--bg-card)]/50">
+                <td class="p-4 font-semibold text-[var(--text-dim)]">操作</td>
+                {all.slice(0, 4).map((a) => (
+                  <td class="p-4 text-center border-l border-[var(--border-subtle)]">
+                    <a
+                      href={a.affiliateUrl}
+                      target="_blank"
+                      rel="nofollow noopener"
+                      class="inline-block px-4 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs transition-colors"
+                    >
+                      直达官网
+                    </a>
+                  </td>
+                ))}
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

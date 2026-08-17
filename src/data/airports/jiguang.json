@@ -1,0 +1,107 @@
+{
+  "id": "jiguang",
+  "slug": "jiguang",
+  "name": "极光机场",
+  "logo": "/logos/jiguang.svg",
+  "tagline": "IEPL 专线 · 稳定高速",
+  "badge": "编辑推荐",
+  "website": "https://jiguang.example.com",
+  "affiliateUrl": "https://jiguang.example.com?aff=jcs",
+  "description": "主打高端全专线 IEPL 接入，晚高峰 4K/8K 视频与海外办公稳定不卡顿，全面支持主流 AI 与全区流媒体解锁。",
+  "price": {
+    "startingMonthly": 29,
+    "startingQuarterly": 82,
+    "startingYearly": 299,
+    "currency": "CNY"
+  },
+  "plans": [
+    {
+      "name": "基础版",
+      "price": 29,
+      "traffic": "150GB",
+      "period": "月付",
+      "speedLimit": "300Mbps",
+      "devices": 3
+    },
+    {
+      "name": "标准版",
+      "price": 49,
+      "traffic": "320GB",
+      "period": "月付",
+      "speedLimit": "500Mbps",
+      "devices": 5
+    },
+    {
+      "name": "旗舰版",
+      "price": 89,
+      "traffic": "800GB",
+      "period": "月付",
+      "speedLimit": "1000Mbps",
+      "devices": 8
+    }
+  ],
+  "protocols": [
+    "Shadowsocks",
+    "VLESS",
+    "Trojan"
+  ],
+  "routes": [
+    "IEPL 专线",
+    "BGP 入口"
+  ],
+  "regions": [
+    "香港",
+    "日本",
+    "新加坡",
+    "美国",
+    "台湾",
+    "英国",
+    "德国"
+  ],
+  "clients": [
+    "Clash",
+    "Shadowrocket",
+    "v2rayN",
+    "Surge",
+    "sing-box"
+  ],
+  "ai": {
+    "status": "verified",
+    "chatgpt": true,
+    "claude": true,
+    "gemini": true,
+    "note": "专线独立原生 IP 解锁，OpenAI / Claude 网页与 API 顺畅"
+  },
+  "streaming": {
+    "status": "verified",
+    "netflix": true,
+    "disney": true,
+    "youtube": true,
+    "hbo": true,
+    "note": "港美日新原生家宽 IP 解锁"
+  },
+  "trial": {
+    "supported": true,
+    "details": "支持 1 元 10GB 24小时尝鲜包"
+  },
+  "unlimitedPlan": false,
+  "status": "normal",
+  "rating": 4.8,
+  "lastVerified": "2026-08-15",
+  "advantages": [
+    "全 IEPL 内网专线，晚高峰超低丢包率与抖动",
+    "节点分布均衡，全节点解锁 ChatGPT/Claude/Netflix",
+    "多客户端一键订阅，文档详实新手友好"
+  ],
+  "warnings": [
+    "暂无不限流量套餐，超大带宽重度下载需注意配额",
+    "最低月付起步价格略高于公网中转机场"
+  ],
+  "sources": [
+    {
+      "type": "verified",
+      "date": "2026-08-15",
+      "desc": "团队实际购入月费套餐连续 7 天监测"
+    }
+  ]
+}

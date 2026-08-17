@@ -1,0 +1,55 @@
+---
+const pillars = [
+  {
+    icon: '📊',
+    title: '多维数据决策',
+    desc: '数据驱动，客观透明',
+  },
+  {
+    icon: '🔍',
+    title: '真实信息核验',
+    desc: '实测反馈，定期复查',
+  },
+  {
+    icon: '🧭',
+    title: '智能决策引擎',
+    desc: '精准匹配适合方案',
+  },
+  {
+    icon: '🛡️',
+    title: '持续更新维护',
+    desc: '实时监测，及时预警',
+  },
+];
+---
+
+<section class="py-8 bg-[var(--bg-surface)] border-b border-[var(--border-subtle)]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
+      <!-- 4 Pillars Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 w-full lg:w-auto flex-1">
+        {pillars.map((p) => (
+          <div class="flex items-center gap-3 p-2">
+            <div class="w-10 h-10 rounded-xl bg-[var(--bg-main)] border border-[var(--border-subtle)] flex items-center justify-center text-xl shrink-0 shadow-inner">
+              {p.icon}
+            </div>
+            <div>
+              <h4 class="text-xs sm:text-sm font-bold text-[var(--text-main)]">{p.title}</h4>
+              <p class="text-[11px] text-[var(--text-dim)]">{p.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Slogan & Flight Icon -->
+      <div class="shrink-0 flex items-center gap-3 pl-0 lg:pl-6 border-t lg:border-t-0 lg:border-l border-[var(--border-subtle)] pt-4 lg:pt-0 w-full lg:w-auto justify-center lg:justify-end">
+        <span class="text-sm sm:text-base font-extrabold text-emerald-400 tracking-wider">
+          搜得准 · 比得清 · 选得好
+        </span>
+        <div class="w-8 h-8 rounded-full bg-emerald-500/10 text-emerald-400 flex items-center justify-center border border-emerald-500/20 font-bold">
+          ✈️
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

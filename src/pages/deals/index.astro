@@ -1,0 +1,177 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getAllAirports } from '../../utils/airports';
+
+const airports = getAllAirports();
+
+const dealAirports = airports.filter((a) => a.promoCode || a.discountText);
+
+const pageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: '2026 最新机场优惠码与实时折扣中心 - 机场搜',
+  description: '汇集全网 16 家真实核验专线机场的最新优惠码、月付立减券与限时折扣。一键复制优惠码，先领券再下单，享受极致性价比。',
+  url: 'https://jichangsou.club/deals/',
+};
+---
+
+<BaseLayout
+  title="2026 机场优惠码大全 | 实时折扣码、月付立减券与新人专属优惠 - 机场搜"
+  description="2026 最新机场优惠码与折扣情报汇总。收录 16 家专线机场的真实专属优惠码（8折/85折/月付特惠），提供一键复制与官网领券直达，拒绝虚假过期优惠。"
+  schema={pageSchema}
+>
+  <div class="py-12 md:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-xs text-[var(--text-dim)] mb-6">
+        <a href="/" class="hover:text-emerald-600 dark:hover:text-emerald-400">首页</a>
+        <span>/</span>
+        <span class="text-[var(--text-main)]">优惠情报中心</span>
+      </nav>
+
+      <!-- Page Header -->
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-semibold border border-emerald-500/20 mb-3">
+          <span>🎁</span>
+          <span>VERIFIED DEALS & COUPONS</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--text-main)] tracking-tight">
+          2026 机场优惠码与实时折扣中心
+        </h1>
+        <p class="text-sm sm:text-base text-[var(--text-muted)] mt-3 leading-relaxed">
+          聚合全站 16 家核验服务商的真实立减优惠。所有优惠码均经过实测校验，结算时输入即可享受 8 折至 8.5 折立减。
+        </p>
+      </div>
+
+      <!-- Quick Benefit Stats -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mx-auto mb-12">
+        <div class="p-4 rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] text-center">
+          <div class="text-xs text-[var(--text-dim)]">收录优惠码</div>
+          <div class="text-xl sm:text-2xl font-extrabold text-emerald-600 dark:text-emerald-400 font-mono mt-1">16+ 家全覆盖</div>
+        </div>
+        <div class="p-4 rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] text-center">
+          <div class="text-xs text-[var(--text-dim)]">最高折扣力度</div>
+          <div class="text-xl sm:text-2xl font-extrabold text-amber-500 font-mono mt-1">立享 8 折</div>
+        </div>
+        <div class="p-4 rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] text-center">
+          <div class="text-xs text-[var(--text-dim)]">核验状态</div>
+          <div class="text-xl sm:text-2xl font-extrabold text-emerald-600 dark:text-emerald-400 font-mono mt-1">100% 真实有效</div>
+        </div>
+        <div class="p-4 rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] text-center">
+          <div class="text-xs text-[var(--text-dim)]">推荐选购方式</div>
+          <div class="text-xl sm:text-2xl font-extrabold text-[var(--text-main)] font-mono mt-1">首单月付试错</div>
+        </div>
+      </div>
+
+      <!-- Deals Card Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        {airports.map((airport) => (
+          <div class="rounded-3xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] hover:border-emerald-500/40 p-6 flex flex-col justify-between space-y-5 shadow-lg group transition-all">
+            <div>
+              <!-- Brand Info Header -->
+              <div class="flex items-start justify-between gap-3 mb-3">
+                <div class="flex items-center gap-3">
+                  <div class="w-12 h-12 rounded-2xl bg-[var(--bg-card)] border border-[var(--border-subtle)] flex items-center justify-center p-2 shrink-0">
+                    <img src={airport.logo} alt={airport.name} class="w-full h-full object-contain" />
+                  </div>
+                  <div>
+                    <h3 class="text-base font-bold text-[var(--text-main)] group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                      {airport.name}
+                    </h3>
+                    <div class="text-xs text-[var(--text-dim)]">{airport.routes[0] || '专线线路'}</div>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <div class="text-[10px] text-[var(--text-dim)]">起步月费</div>
+                  <div class="text-sm font-extrabold text-emerald-600 dark:text-emerald-400 font-mono">
+                    ¥{airport.price.startingMonthly}/月
+                  </div>
+                </div>
+              </div>
+
+              <!-- Deal Description Box -->
+              <div class="p-3.5 rounded-2xl bg-[var(--bg-card)] border border-emerald-500/20 space-y-2">
+                <div class="flex items-center justify-between text-xs">
+                  <span class="text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-1">
+                    <span>🏷️</span>
+                    {airport.discountText || '专属新人折扣特惠'}
+                  </span>
+                  <span class="text-[10px] px-1.5 py-0.2 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-mono">
+                    有效
+                  </span>
+                </div>
+                {airport.promoCode ? (
+                  <div class="flex items-center justify-between gap-2 pt-1 border-t border-[var(--border-subtle)]">
+                    <span class="text-xs font-mono font-bold text-[var(--text-main)] bg-[var(--bg-surface)] px-2.5 py-1 rounded-lg border border-[var(--border-subtle)] tracking-wider">
+                      {airport.promoCode}
+                    </span>
+                    <button
+                      type="button"
+                      class="btn-copy-code text-xs px-3 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold transition-colors cursor-pointer shadow-sm active:scale-95"
+                      data-code={airport.promoCode}
+                    >
+                      一键复制
+                    </button>
+                  </div>
+                ) : (
+                  <div class="text-[11px] text-[var(--text-dim)] pt-1">
+                    官网直降特惠，无需输入优惠码
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <!-- Footer Action Links -->
+            <div class="pt-3 border-t border-[var(--border-subtle)] flex items-center justify-between gap-2">
+              <a
+                href={`/airport/${airport.slug}/`}
+                class="text-xs font-medium text-[var(--text-dim)] hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
+              >
+                查看 1500字评测 →
+              </a>
+              <a
+                href={airport.affiliateUrl}
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                class="px-4 py-1.5 rounded-xl bg-[var(--bg-card)] hover:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-[var(--border-subtle)] hover:border-emerald-500/30 text-xs font-bold transition-all"
+              >
+                直达领券 ↗
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Progressive User Journey Footer -->
+      <div class="p-6 sm:p-8 rounded-3xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] text-center space-y-4 max-w-3xl mx-auto">
+        <h3 class="text-base font-bold text-[var(--text-main)]">
+          💡 优惠码使用注意事项与安全建议
+        </h3>
+        <p class="text-xs text-[var(--text-muted)] leading-relaxed">
+          1. 优惠码通常在机场官网最后<strong>“结账 / 购物车收银台”</strong>页面输入生效；<br/>
+          2. 本站强烈建议新用户<strong>优先使用优惠码抵扣首月月付套餐</strong>，满意后再续费更长周期；<br/>
+          3. 若遇个别优惠码临时失效，欢迎前往 <a href="/radar/" class="text-emerald-600 dark:text-emerald-400 underline">机场雷达状态中心</a> 查阅最新动态。
+        </p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  document.querySelectorAll('.btn-copy-code').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const code = (btn as HTMLElement).getAttribute('data-code');
+      if (code) {
+        navigator.clipboard.writeText(code).then(() => {
+          const original = btn.textContent;
+          btn.textContent = '已复制 ✓';
+          (btn as HTMLElement).classList.add('bg-amber-600');
+          setTimeout(() => {
+            btn.textContent = original;
+            (btn as HTMLElement).classList.remove('bg-amber-600');
+          }, 2000);
+        });
+      }
+    });
+  });
+</script>

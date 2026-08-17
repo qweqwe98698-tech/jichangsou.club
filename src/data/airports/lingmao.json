@@ -1,0 +1,101 @@
+{
+  "id": "lingmao",
+  "slug": "lingmao",
+  "name": "灵猫网络",
+  "logo": "/logos/lingmao.svg",
+  "tagline": "月付大流量 · 150GB · 套餐种类丰富",
+  "badge": "月付大流量",
+  "website": "https://vip01.civetnet.com/#/?code=8MIAyxak",
+  "affiliateUrl": "https://vip01.civetnet.com/#/?code=8MIAyxak",
+  "promoCode": "lmao888",
+  "discountText": "新人注册 9 折优惠码：lmao888",
+  "openedYear": 2024,
+  "paymentMethods": [
+    "支付宝",
+    "微信",
+    "USDT"
+  ],
+  "description": "2024年开业的新锐大流量机场，月付入门仅 19 元即可享受 150GB 充裕流量，采用企业级内网专线，支持不限时套餐与多设备在线。",
+  "price": {
+    "startingMonthly": 19,
+    "startingQuarterly": 54,
+    "startingYearly": 190,
+    "currency": "CNY"
+  },
+  "plans": [
+    {
+      "name": "大流量月付",
+      "price": 19,
+      "traffic": "150GB",
+      "period": "月付",
+      "speedLimit": "400Mbps",
+      "devices": 4
+    },
+    {
+      "name": "旗舰大包",
+      "price": 38,
+      "traffic": "350GB",
+      "period": "月付",
+      "speedLimit": "800Mbps",
+      "devices": 6
+    }
+  ],
+  "protocols": [
+    "Shadowsocks",
+    "VLESS"
+  ],
+  "routes": [
+    "企业级内网专线"
+  ],
+  "regions": [
+    "香港",
+    "日本",
+    "新加坡",
+    "美国",
+    "台湾"
+  ],
+  "clients": [
+    "Clash",
+    "Shadowrocket",
+    "v2rayN",
+    "sing-box"
+  ],
+  "ai": {
+    "status": "vendor",
+    "chatgpt": true,
+    "claude": true,
+    "gemini": true,
+    "note": "厂商资料支持 ChatGPT / Claude"
+  },
+  "streaming": {
+    "status": "vendor",
+    "netflix": true,
+    "disney": true,
+    "youtube": true,
+    "note": "支持常见主流媒体 4K 播放"
+  },
+  "trial": {
+    "supported": false,
+    "details": "支持 19 元月付入门"
+  },
+  "unlimitedPlan": true,
+  "status": "normal",
+  "rating": 4.7,
+  "lastVerified": "2026-08-11",
+  "advantages": [
+    "19元提供 150GB 流量，月付单价性价比突出",
+    "不强制绑定长周期，资金风险低",
+    "支持第三方客户端订阅导入"
+  ],
+  "warnings": [
+    "开业时间为 2024 年，相对老牌机场历史较短",
+    "具体导入配置需联系在线客服"
+  ],
+  "sources": [
+    {
+      "type": "measured",
+      "date": "2026-08-11",
+      "desc": "实测节点测速记录"
+    }
+  ]
+}

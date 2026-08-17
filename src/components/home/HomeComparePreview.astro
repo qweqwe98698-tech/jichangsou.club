@@ -1,0 +1,103 @@
+---
+import { getFeaturedAirports } from '../../utils/airports';
+
+const featured = getFeaturedAirports().slice(0, 3);
+---
+
+<div class="rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] p-5 sm:p-6 shadow-xl flex flex-col justify-between">
+  <div>
+    <!-- Header -->
+    <div class="flex items-center justify-between pb-3.5 mb-4 border-b border-[var(--border-subtle)]">
+      <div>
+        <h3 class="text-base sm:text-lg font-bold text-[var(--text-main)] flex items-center gap-2">
+          <span>⚖️</span>
+          机场快速对比
+          <span class="text-[10px] px-2 py-0.5 rounded-full bg-[var(--bg-card)] text-[var(--text-dim)] border border-[var(--border-subtle)]">
+            3 家典型样本
+          </span>
+        </h3>
+        <p class="text-xs text-[var(--text-dim)]">直观对比价格、线路类型与流媒体/AI支持</p>
+      </div>
+
+      <a
+        href="/compare/"
+        class="text-xs text-[var(--text-muted)] hover:text-emerald-400 font-medium transition-colors flex items-center gap-0.5"
+      >
+        <span>完整对比盘</span>
+        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="m9 18 6-6-6-6"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Mini Comparison Table -->
+    <div class="overflow-x-auto scrollbar-none">
+      <table class="w-full text-xs text-left border-collapse">
+        <thead>
+          <tr class="border-b border-[var(--border-subtle)] text-[var(--text-dim)]">
+            <th class="py-2 pr-2 font-medium">对比指标</th>
+            {featured.map((airport) => (
+              <th class="py-2 px-2 font-bold text-[var(--text-main)] text-center">
+                <a href={`/airport/${airport.slug}/`} class="hover:text-emerald-400 transition-colors">
+                  {airport.name}
+                </a>
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-[var(--border-subtle)] text-[var(--text-muted)]">
+          <tr>
+            <td class="py-2.5 pr-2 font-medium text-[var(--text-dim)]">月付起步</td>
+            {featured.map((a) => (
+              <td class="py-2.5 px-2 text-center font-mono font-bold text-emerald-400">
+                ¥{a.price.startingMonthly}/月
+              </td>
+            ))}
+          </tr>
+          <tr>
+            <td class="py-2.5 pr-2 font-medium text-[var(--text-dim)]">线路架构</td>
+            {featured.map((a) => (
+              <td class="py-2.5 px-2 text-center text-[11px]">
+                {a.routes[0]}
+              </td>
+            ))}
+          </tr>
+          <tr>
+            <td class="py-2.5 pr-2 font-medium text-[var(--text-dim)]">AI 解锁</td>
+            {featured.map((a) => (
+              <td class="py-2.5 px-2 text-center text-[11px]">
+                {a.ai.claude ? 'GPT + Claude' : 'ChatGPT'}
+              </td>
+            ))}
+          </tr>
+          <tr>
+            <td class="py-2.5 pr-2 font-medium text-[var(--text-dim)]">流媒体</td>
+            {featured.map((a) => (
+              <td class="py-2.5 px-2 text-center text-[11px]">
+                {a.streaming.hbo ? '全主流解锁' : 'Netflix/YouTube'}
+              </td>
+            ))}
+          </tr>
+          <tr>
+            <td class="py-2.5 pr-2 font-medium text-[var(--text-dim)]">体验政策</td>
+            {featured.map((a) => (
+              <td class="py-2.5 px-2 text-center text-[11px]">
+                {a.trial.supported ? '支持体验' : '无免费试用'}
+              </td>
+            ))}
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Bottom CTA -->
+  <div class="pt-4 mt-4 border-t border-[var(--border-subtle)]">
+    <a
+      href="/compare/"
+      class="w-full py-2.5 rounded-xl bg-[var(--bg-card)] hover:bg-emerald-600 hover:text-white border border-[var(--border-subtle)] text-xs text-[var(--text-main)] font-semibold text-center transition-all flex items-center justify-center gap-1.5 active:scale-98 shadow-sm"
+    >
+      <span>进入自定义多维对比系统 →</span>
+    </a>
+  </div>
+</div>

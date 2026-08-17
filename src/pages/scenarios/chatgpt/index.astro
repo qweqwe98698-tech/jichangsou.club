@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import AirportCard from '../../../components/airport/AirportCard.astro';
+import { getAllAirports } from '../../../utils/airports';
+
+const aiAirports = getAllAirports().filter((a) => a.ai.chatgpt);
+---
+
+<BaseLayout
+  title="ChatGPT / Claude 专用网络环境指南与节点推荐 - 机场搜"
+  description="针对 OpenAI ChatGPT、Claude 3.5 Sonnet 与 Gemini 的访问限制、IP 纯净度要求与防封号分流规则详尽指南。"
+>
+  <div class="py-12 md:py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-xs text-[var(--text-dim)] mb-6">
+        <a href="/" class="hover:text-emerald-400">首页</a>
+        <span>/</span>
+        <span class="text-[var(--text-main)]">AI 专题</span>
+      </nav>
+
+      <div class="max-w-3xl mb-8">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold border border-emerald-500/20 mb-3">
+          <span>🤖</span>
+          <span>AI ACCELERATION & RESIDENTIAL IP</span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[var(--text-main)] tracking-tight mb-3">
+          ChatGPT & Claude 访问避坑与节点推荐
+        </h1>
+        <p class="text-sm text-[var(--text-muted)] leading-relaxed">
+          OpenAI 与 Claude 具备极强的风控系统，使用廉价数据中心机房 IP 极易遭遇 Access Denied、无法登录或触发封号。本专题指导如何选择纯净原生 IP 节点。
+        </p>
+      </div>
+
+      <!-- Strategy Guide Box -->
+      <div class="p-6 rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-strong)] space-y-4 mb-10 shadow-lg">
+        <h2 class="text-base font-bold text-[var(--text-main)] flex items-center gap-2">
+          <span class="w-1.5 h-4 bg-emerald-500 rounded-sm"></span>
+          AI 访问四大黄金法则
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-[var(--text-muted)]">
+          <div class="p-3.5 rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)]">
+            <strong class="text-[var(--text-main)] block mb-1">1. 优选美国 / 日本 / 新加坡原生节点</strong>
+            避免使用香港节点访问 OpenAI（官方不支持香港地区 IP）。
+          </div>
+          <div class="p-3.5 rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)]">
+            <strong class="text-[var(--text-main)] block mb-1">2. 开启客户端分流规则</strong>
+            确保域名 openai.com 与 anthropic.com 走代理，且不要随意切换节点地区。
+          </div>
+          <div class="p-3.5 rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)]">
+            <strong class="text-[var(--text-main)] block mb-1">3. 避免多人共用脏 IP</strong>
+            脏 IP 容易触发 Cloudflare 5秒无限循环验证与滥用标记。
+          </div>
+          <div class="p-3.5 rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)]">
+            <strong class="text-[var(--text-main)] block mb-1">4. 优先选择支持住宅/商宽的机场</strong>
+            住宅 ISP 标识是目前最稳妥的通过风控方式。
+          </div>
+        </div>
+      </div>
+
+      <!-- Recommended Airports -->
+      <div class="space-y-4">
+        <h2 class="text-lg font-bold text-[var(--text-main)]">适配 AI 的精选机场服务商</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {aiAirports.slice(0, 6).map((airport) => (
+            <AirportCard airport={airport} />
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

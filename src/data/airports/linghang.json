@@ -1,0 +1,98 @@
+{
+  "id": "linghang",
+  "slug": "linghang",
+  "name": "领航机场",
+  "logo": "/logos/linghang.svg",
+  "tagline": "老牌稳定 · 值得信赖",
+  "badge": "稳定可靠",
+  "website": "https://linghang.example.com",
+  "affiliateUrl": "https://linghang.example.com?aff=jcs",
+  "description": "运营多年老牌机场，主打 BGP 专线与稳定不过载，提供充足备用线路与多节点灾备机制。",
+  "price": {
+    "startingMonthly": 25,
+    "startingQuarterly": 70,
+    "startingYearly": 260,
+    "currency": "CNY"
+  },
+  "plans": [
+    {
+      "name": "进阶版",
+      "price": 25,
+      "traffic": "180GB",
+      "period": "月付",
+      "speedLimit": "300Mbps",
+      "devices": 3
+    },
+    {
+      "name": "尊享版",
+      "price": 45,
+      "traffic": "400GB",
+      "period": "月付",
+      "speedLimit": "600Mbps",
+      "devices": 6
+    }
+  ],
+  "protocols": [
+    "Shadowsocks",
+    "VLESS"
+  ],
+  "routes": [
+    "BGP 专线",
+    "多地多活入口"
+  ],
+  "regions": [
+    "香港",
+    "日本",
+    "新加坡",
+    "美国",
+    "台湾",
+    "德国",
+    "澳洲"
+  ],
+  "clients": [
+    "Clash",
+    "Shadowrocket",
+    "v2rayN",
+    "Surge",
+    "sing-box"
+  ],
+  "ai": {
+    "status": "verified",
+    "chatgpt": true,
+    "claude": true,
+    "gemini": true,
+    "note": "独立分流规则，AI 服务解锁顺畅"
+  },
+  "streaming": {
+    "status": "verified",
+    "netflix": true,
+    "disney": true,
+    "youtube": true,
+    "hbo": true,
+    "note": "支持 Netflix, Disney+, TVB"
+  },
+  "trial": {
+    "supported": true,
+    "details": "注册赠送 2 小时 2GB 连通性测试"
+  },
+  "unlimitedPlan": false,
+  "status": "normal",
+  "rating": 4.7,
+  "lastVerified": "2026-08-12",
+  "advantages": [
+    "老牌团队运维经验丰富，工单响应迅速",
+    "多活灾备入口，抗波动能力强",
+    "节点清晰标注倍率与适用场景"
+  ],
+  "warnings": [
+    "个别低倍率节点晚高峰速度略有限制",
+    "套餐不可中途降级"
+  ],
+  "sources": [
+    {
+      "type": "verified",
+      "date": "2026-08-12",
+      "desc": "实测节点连通性与工单支持响应"
+    }
+  ]
+}

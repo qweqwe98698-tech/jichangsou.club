@@ -1,0 +1,102 @@
+{
+  "id": "feiyue",
+  "slug": "feiyue",
+  "name": "飞跃机场",
+  "logo": "/logos/feiyue.svg",
+  "tagline": "解锁流媒体 · 全球覆盖",
+  "badge": "解锁增强",
+  "website": "https://feiyue.example.com",
+  "affiliateUrl": "https://feiyue.example.com?aff=jcs",
+  "description": "专为海外流媒体与全球冷门地区访问优化，节点覆盖 30+ 国家地区，支持原生家宽 IP 轮换。",
+  "price": {
+    "startingMonthly": 28,
+    "startingQuarterly": 78,
+    "startingYearly": 280,
+    "currency": "CNY"
+  },
+  "plans": [
+    {
+      "name": "全球通月付",
+      "price": 28,
+      "traffic": "220GB",
+      "period": "月付",
+      "speedLimit": "400Mbps",
+      "devices": 4
+    },
+    {
+      "name": "流媒体至尊版",
+      "price": 55,
+      "traffic": "600GB",
+      "period": "月付",
+      "speedLimit": "1000Mbps",
+      "devices": 8
+    }
+  ],
+  "protocols": [
+    "Shadowsocks",
+    "Trojan",
+    "Hysteria2"
+  ],
+  "routes": [
+    "IEPL 专线",
+    "直连优化"
+  ],
+  "regions": [
+    "香港",
+    "日本",
+    "新加坡",
+    "美国",
+    "台湾",
+    "韩国",
+    "英国",
+    "土耳其",
+    "阿根廷",
+    "印度"
+  ],
+  "clients": [
+    "Clash",
+    "Shadowrocket",
+    "v2rayN",
+    "sing-box",
+    "Surge"
+  ],
+  "ai": {
+    "status": "verified",
+    "chatgpt": true,
+    "claude": true,
+    "gemini": true,
+    "note": "美/英/日多节点支持 Claude Pro / OpenAI Plus 订阅支付"
+  },
+  "streaming": {
+    "status": "verified",
+    "netflix": true,
+    "disney": true,
+    "youtube": true,
+    "hbo": true,
+    "note": "全区 Netflix / Disney+ / HBO Max / DMM 原生解锁"
+  },
+  "trial": {
+    "supported": false,
+    "details": "暂无免费试用"
+  },
+  "unlimitedPlan": false,
+  "status": "normal",
+  "rating": 4.7,
+  "lastVerified": "2026-08-16",
+  "advantages": [
+    "冷门地区节点多，适合锁区支付与本地化测试",
+    "流媒体解锁能力强，家宽 IP 定期维护更新",
+    "支持新一代 Hysteria2 高抗封锁协议"
+  ],
+  "warnings": [
+    "部分冷门节点带宽较小（50Mbps），仅适合轻量浏览",
+    "月付无不限流量选项"
+  ],
+  "sources": [
+    {
+      "type": "verified",
+      "date": "2026-08-16",
+      "desc": "实测土耳其/阿根廷等区域解锁与支付环境"
+    }
+  ]
+}

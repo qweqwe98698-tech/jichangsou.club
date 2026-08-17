@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import AirportCard from '../../../components/airport/AirportCard.astro';
+import { getAllAirports } from '../../../utils/airports';
+
+const shadowrocketAirports = getAllAirports().filter((a) => a.clients.some((c) => c.includes('Shadowrocket')));
+---
+
+<BaseLayout
+  title="Shadowrocket (小火箭) 机场推荐 | iOS 扫码即用与规则分流 - 机场搜"
+  description="精选支持 Shadowrocket (小火箭) 的苹果 iOS 优选机场。支持扫码一键导入、自动定期更新节点与全场景分流配置。"
+>
+  <div class="py-12 md:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-xs text-[var(--text-dim)] mb-6">
+        <a href="/" class="hover:text-emerald-400">首页</a>
+        <span>/</span>
+        <a href="/airports/" class="hover:text-emerald-400">机场库</a>
+        <span>/</span>
+        <span class="text-[var(--text-main)]">Shadowrocket 机场</span>
+      </nav>
+
+      <div class="max-w-3xl mb-8">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs font-semibold border border-blue-500/20 mb-3">
+          <span>🚀</span>
+          <span>SHADOWROCKET (小火箭) OPTIMIZED</span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[var(--text-main)] tracking-tight mb-3">
+          Shadowrocket (小火箭) 推荐机场
+        </h1>
+        <p class="text-sm text-[var(--text-muted)] leading-relaxed">
+          Shadowrocket 是 iOS 平台最经典的代理客户端。本合集收录的机场均提供小火箭二维码扫码导入与直连/代理分流规则。
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
+        <div class="p-4 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-subtle)]">
+          <h3 class="text-xs font-bold text-[var(--text-main)] mb-1">Q: 小火箭如何添加订阅？</h3>
+          <p class="text-xs text-[var(--text-dim)]">A: 打开 Shadowrocket，点击右上角加号，类型选择 Subscribe，粘贴 URL 或直接用左上角扫描二维码即可。</p>
+        </div>
+        <div class="p-4 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-subtle)]">
+          <h3 class="text-xs font-bold text-[var(--text-main)] mb-1">Q: 怎么设置国内直连国外代理？</h3>
+          <p class="text-xs text-[var(--text-dim)]">A: 在首页将“全局路由”从 Proxy 修改为“配置 (Config)”即可实现智能分流。</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {shadowrocketAirports.map((airport) => (
+          <AirportCard airport={airport} />
+        ))}
+      </div>
+    </div>
+  </div>
+</BaseLayout>

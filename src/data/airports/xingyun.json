@@ -1,0 +1,103 @@
+{
+  "id": "xingyun",
+  "slug": "xingyun",
+  "name": "星云机场",
+  "logo": "/logos/xingyun.svg",
+  "tagline": "高速中转 · 性价比之选",
+  "badge": "高性价比",
+  "website": "https://xingyun.example.com",
+  "affiliateUrl": "https://xingyun.example.com?aff=jcs",
+  "description": "采用多入口 BGP 隧道中转架构，流量大、价格亲民，适合流媒体追剧、日常大流量下载与轻度办公。",
+  "price": {
+    "startingMonthly": 15,
+    "startingQuarterly": 42,
+    "startingYearly": 150,
+    "currency": "CNY"
+  },
+  "plans": [
+    {
+      "name": "轻量月付",
+      "price": 15,
+      "traffic": "200GB",
+      "period": "月付",
+      "speedLimit": "200Mbps",
+      "devices": 2
+    },
+    {
+      "name": "进阶月付",
+      "price": 28,
+      "traffic": "500GB",
+      "period": "月付",
+      "speedLimit": "500Mbps",
+      "devices": 4
+    },
+    {
+      "name": "年付大包",
+      "price": 150,
+      "traffic": "200GB/月",
+      "period": "年付",
+      "speedLimit": "300Mbps",
+      "devices": 3
+    }
+  ],
+  "protocols": [
+    "Shadowsocks",
+    "Trojan"
+  ],
+  "routes": [
+    "优质 BGP 中转",
+    "多入口隧道"
+  ],
+  "regions": [
+    "香港",
+    "日本",
+    "新加坡",
+    "美国",
+    "韩国"
+  ],
+  "clients": [
+    "Clash",
+    "Shadowrocket",
+    "v2rayN",
+    "sing-box"
+  ],
+  "ai": {
+    "status": "verified",
+    "chatgpt": true,
+    "claude": true,
+    "gemini": true,
+    "note": "美日新节点支持 ChatGPT/Claude 网页端"
+  },
+  "streaming": {
+    "status": "verified",
+    "netflix": true,
+    "disney": true,
+    "youtube": true,
+    "hbo": false,
+    "note": "支持 Netflix 非自制剧及 YouTube Premium"
+  },
+  "trial": {
+    "supported": false,
+    "details": "暂无免费试用，支持最低 15 元月付体验"
+  },
+  "unlimitedPlan": false,
+  "status": "normal",
+  "rating": 4.6,
+  "lastVerified": "2026-08-14",
+  "advantages": [
+    "每 GB 单价极具竞争力，流量充裕",
+    "多地入口负载均衡，常规晚高峰表现平稳",
+    "支持主流订阅格式，客户端兼容性好"
+  ],
+  "warnings": [
+    "极端敏感时期隧道切换偶有 1-2 分钟延迟",
+    "暂不提供专用游戏低延迟专线"
+  ],
+  "sources": [
+    {
+      "type": "verified",
+      "date": "2026-08-14",
+      "desc": "实测中转节点带宽与流媒体解锁状态"
+    }
+  ]
+}

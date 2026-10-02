@@ -1,0 +1,10 @@
+User-agent: bingbot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: *
+Allow: /
+
+Sitemap: https://jichangsou.club/sitemap-index.xml

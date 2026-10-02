@@ -1,8 +1,19 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getAllAirports } from '../../utils/airports';
+import { getAllAirports, getAirportBySlug } from '../../utils/airports';
 
 const all = getAllAirports();
+
+const comparePairs = [
+  { slug1: 'guangsu', slug2: 'yuzhou', title: '光速云 VS 宇宙云', highlight: '老牌 IEPL 专线 vs 高性价比 15元专线' },
+  { slug1: 'xingdaomeng', slug2: 'lingmao', title: '星岛盟 VS 灵猫云', highlight: '流媒体大带宽专线 vs 稳定综合型专线' },
+  { slug1: 'feimao', slug2: 'weitu', title: '飞猫云 VS 唯兔云', highlight: '三网优化专线 vs 多节点极速网络' },
+  { slug1: 'u1s1', slug2: 'jilian', title: 'U1S1 VS 极连云', highlight: '20元档 VLESS 协议专线深度横评' },
+  { slug1: 'guangnianti', slug2: 'sogo', title: '光年梯 VS SOGO云', highlight: '高综合评分品牌稳定性横评' },
+  { slug1: 'kexin', slug2: 'sujie', title: '可信云 VS 速界', highlight: '多入口中转容灾 vs 极速入门选型' },
+  { slug1: 'kuaili', slug2: 'quanqiu', title: '快狸云 VS 全球互联', highlight: '大流量套餐与全球节点覆盖对比' },
+  { slug1: 'yifan', slug2: 'ermao', title: '一翻云 VS 二猫云', highlight: '高性价比月付专线方案实测对比' },
+];
 ---
 
 <BaseLayout
@@ -27,7 +38,7 @@ const all = getAllAirports();
       </div>
 
       <!-- Compare Table Matrix -->
-      <div class="rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-strong)] shadow-xl overflow-hidden">
+      <div class="rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-strong)] shadow-xl overflow-hidden mb-14">
         <div class="overflow-x-auto">
           <table class="w-full text-xs sm:text-sm text-left border-collapse">
             <thead>
@@ -115,7 +126,7 @@ const all = getAllAirports();
                     <a
                       href={a.affiliateUrl}
                       target="_blank"
-                      rel="nofollow noopener"
+                      rel="nofollow sponsored noopener noreferrer"
                       class="inline-block px-4 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs transition-colors"
                     >
                       直达官网
@@ -127,6 +138,71 @@ const all = getAllAirports();
           </table>
         </div>
       </div>
+
+      <!-- 1v1 Deep Head-to-Head Comparison Showcases -->
+      <section class="space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-[var(--border-subtle)] pb-4">
+          <div>
+            <div class="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400 mb-1">
+              <span>⚖️</span>
+              <span>1v1 经典对决专题</span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-extrabold text-[var(--text-main)]">
+              热门机场 1v1 深度横向对比专栏
+            </h2>
+          </div>
+          <p class="text-xs text-[var(--text-dim)]">
+            基于真实测速与参数交叉比对，深度剖析不同品牌在晚高峰、价格与协议上的差异
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {comparePairs.map((pair) => {
+            const ap1 = getAirportBySlug(pair.slug1);
+            const ap2 = getAirportBySlug(pair.slug2);
+            return (
+              <a
+                href={`/compare/${pair.slug1}-vs-${pair.slug2}/`}
+                class="group p-5 rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] hover:border-emerald-500/50 hover:shadow-lg transition-all flex flex-col justify-between"
+              >
+                <div>
+                  <div class="flex items-center justify-between gap-2 mb-4">
+                    <div class="flex items-center gap-2">
+                      <div class="w-9 h-9 rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)] p-1.5 flex items-center justify-center shrink-0">
+                        {ap1?.logo && <img src={ap1.logo} alt={ap1.name} class="w-full h-full object-contain" />}
+                      </div>
+                      <span class="text-xs font-bold text-[var(--text-main)]">{ap1?.name}</span>
+                    </div>
+                    <span class="text-xs font-extrabold text-amber-500 font-mono">VS</span>
+                    <div class="flex items-center gap-2">
+                      <span class="text-xs font-bold text-[var(--text-main)]">{ap2?.name}</span>
+                      <div class="w-9 h-9 rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)] p-1.5 flex items-center justify-center shrink-0">
+                        {ap2?.logo && <img src={ap2.logo} alt={ap2.name} class="w-full h-full object-contain" />}
+                      </div>
+                    </div>
+                  </div>
+
+                  <h3 class="text-sm font-bold text-[var(--text-main)] group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors mb-1.5">
+                    {pair.title}
+                  </h3>
+                  <p class="text-xs text-[var(--text-dim)] leading-relaxed">
+                    {pair.highlight}
+                  </p>
+                </div>
+
+                <div class="pt-4 mt-4 border-t border-[var(--border-subtle)] flex items-center justify-between text-xs">
+                  <span class="text-emerald-600 dark:text-emerald-400 font-medium group-hover:underline">
+                    查看详细评测对比 →
+                  </span>
+                  <span class="font-mono text-[11px] text-[var(--text-dim)]">
+                    ¥{ap1?.price.startingMonthly} vs ¥{ap2?.price.startingMonthly}
+                  </span>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+      </section>
     </div>
   </div>
 </BaseLayout>

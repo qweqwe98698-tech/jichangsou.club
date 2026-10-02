@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getAllAirports, getAirportBySlug } from '../../utils/airports';
+import { airportEditorialMap } from '../../utils/airportEditorial';
 
 export async function getStaticPaths() {
   const airports = getAllAirports();
@@ -40,35 +41,31 @@ const competitors = allAirports
   .filter((a) => a.slug !== airport.slug)
   .slice(0, 3);
 
-// Dynamic FAQ list for this airport
-const faqs = [
-  {
-    q: `${airport.name} 适合新手使用吗？需要自己配置复杂节点吗？`,
-    a: `${airport.name} 支持全平台主流客户端一键导入（包括 Clash Verge Rev、Shadowrocket 小火箭、v2rayN 及 sing-box）。官方后台提供一键订阅格式转换与图文使用教程，新手只需复制订阅链接或扫码即可导入全部节点，无需手动配置协议参数。`,
-  },
-  {
-    q: `${airport.name} 在晚高峰（20:00 - 23:00）表现如何？会卡顿掉线吗？`,
-    a: `根据本站 2026-08-11 批次实测，${airport.name} 采用 ${airport.routes.join('/')}，入口具备多线 BGP 容灾，跨境物理专线不经过公网国际出口，晚高峰期延迟波动与丢包率明显优于普通公网直连梯子，可稳定支持 YouTube 4K 播放与 ChatGPT 持续对话。`,
-  },
-  {
-    q: `${airport.name} 支持 ChatGPT、Claude 和 Netflix 解锁吗？`,
-    a: `${airport.name} 厂商资料与实测显示其主力香港、日本、新加坡及美国节点覆盖主流流媒体与 AI 工具。建议使用 ChatGPT 或 Claude 时优选美西或日本住宅原生 IP 节点，以规避 OpenAI 官方地域封锁与 Access Denied 报错。`,
-  },
-  {
-    q: `初次购买 ${airport.name} 应该选月付还是年付？有什么优惠？`,
-    a: `本站坚持客观中立的选购原则，强烈建议所有新用户首次使用时购买最低门槛的【${airport.plans[0]?.name || '月付套餐'}】（起步仅 ¥${airport.price.startingMonthly}/月）。结账时可输入专属优惠码【${airport.promoCode || '暂无'}】享受折扣，待实测满意后再考虑更长周期的续费。`,
-  },
-];
+const editorial = airportEditorialMap[airport.slug] || {
+  title: `${airport.name} 2026 深度评测与实测数据报告 - 机场搜`,
+  metaDesc: `${airport.name} 2026 技术评测。包含 ${airport.routes.join('/')} 专线表现、节点延迟、AI/流媒体支持及配置说明。`,
+  badgeHighlight: airport.badge || '实测核验',
+  executiveSummary: `${airport.name} 凭借 ${airport.tagline}，在同价位服务商中展现出鲜明的技术特色。`,
+  brandAnalysis: `${airport.name} 运营始于 ${airport.openedYear || 2023} 年，支持 ${airport.paymentMethods ? airport.paymentMethods.join('、') : '主流'} 结算渠道。`,
+  pricingAdvice: `建议首选月付规格进行体验，起步门槛为 ¥${airport.price.startingMonthly}/月。`,
+  networkAnalysis: `采用 ${airport.routes.join(' + ')} 传输，协议覆盖 ${airport.protocols.join('、')}。`,
+  aiStreamingAnalysis: `主流节点支持常用 AI 工具与 4K 流媒体播放。`,
+  clientRecommendation: `兼容全平台主流代理软件，提供一键导入支持。`,
+  faqs: [
+    { q: `${airport.name} 适合新手使用吗？`, a: `${airport.name} 提供一键订阅导入功能，新手可快速配置就绪。` },
+    { q: `${airport.name} 晚高峰表现如何？`, a: `采用物理专线中转，晚高峰延迟稳定性有良好保障。` },
+  ],
+};
 
 const pageSchema = {
   '@context': 'https://schema.org',
   '@type': 'Product',
-  name: `${airport.name} 机场代理服务`,
+  name: `${airport.name} 网络代理服务`,
   description: airport.description,
   image: {
     '@type': 'ImageObject',
     url: `https://jichangsou.club${benchmark?.file || airport.logo}`,
-    caption: `${airport.name} 2026-08-11 真实测速证据与节点延迟数据`,
+    caption: `${airport.name} 2026 真实测速证据与节点延迟数据`,
   },
   brand: {
     '@type': 'Brand',
@@ -95,7 +92,7 @@ const pageSchema = {
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  mainEntity: faqs.map((f) => ({
+  mainEntity: editorial.faqs.map((f) => ({
     '@type': 'Question',
     name: f.q,
     acceptedAnswer: {
@@ -107,8 +104,8 @@ const faqSchema = {
 ---
 
 <BaseLayout
-  title={`${airport.name}怎么样？2026最新评测与节点测速实测报告 | 机场推荐与选购导航 - 机场搜`}
-  description={`${airport.name} 2026 深度评测。包含 ${airport.routes.join('/')} 专线表现、2026-08-11 节点测速原始截图、ChatGPT/Claude AI 访问支持、Netflix 4K 解锁能力、Clash/小火箭订阅配置教程及优惠码 ${airport.promoCode || '无'}。`}
+  title={editorial.title}
+  description={editorial.metaDesc}
   schema={{ ...pageSchema, ...faqSchema }}
 >
   <div class="py-10 md:py-14">
@@ -119,7 +116,7 @@ const faqSchema = {
         <span>/</span>
         <a href="/airports/" class="hover:text-emerald-600 dark:hover:text-emerald-400">机场库</a>
         <span>/</span>
-        <a href="/recommend/" class="hover:text-emerald-600 dark:hover:text-emerald-400">机场推荐</a>
+        <a href="/recommend/" class="hover:text-emerald-600 dark:hover:text-emerald-400">精选推荐</a>
         <span>/</span>
         <span class="text-[var(--text-main)]">{airport.name} 深度评测</span>
       </nav>
@@ -159,11 +156,9 @@ const faqSchema = {
                 <h1 class="text-2xl sm:text-3xl font-extrabold text-[var(--text-main)]">
                   {airport.name}
                 </h1>
-                {airport.badge && (
-                  <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
-                    {airport.badge}
-                  </span>
-                )}
+                <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                  {editorial.badgeHighlight}
+                </span>
                 {airport.rating && (
                   <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-amber-500/10 text-amber-500 border border-amber-500/20">
                     ★ {airport.rating} 综合评分
@@ -192,7 +187,7 @@ const faqSchema = {
               <a
                 href={airport.affiliateUrl}
                 target="_blank"
-                rel="nofollow noopener noreferrer"
+                rel="nofollow sponsored noopener noreferrer"
                 class="flex-1 sm:flex-none px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold text-center shadow-md transition-colors"
               >
                 前往官网 ↗
@@ -220,7 +215,7 @@ const faqSchema = {
         )}
       </div>
 
-      <!-- 02. Main Review Articles Body (1500+ Words Structured SEO Architecture) -->
+      <!-- 02. Main Review Articles Body -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
         <!-- Left 8 Cols: Comprehensive Review Chapters -->
         <div class="lg:col-span-8 space-y-8">
@@ -229,13 +224,13 @@ const faqSchema = {
           <article class="p-6 sm:p-8 rounded-3xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-4">
             <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-semibold">
               <span>📌</span>
-              <span>2026 机场推荐与决策速览</span>
+              <span>2026 核心画像与实测结论</span>
             </div>
             <h2 class="text-xl sm:text-2xl font-extrabold text-[var(--text-main)]">
-              {airport.name} 综合画像与核心结论
+              {airport.name} 综合评价速览
             </h2>
             <p class="text-sm text-[var(--text-muted)] leading-relaxed">
-              在 2026 年的翻墙与代理工具生态中，用户对科学上网工具的核心诉求已从单纯的“能连上”升级为“<strong>晚高峰 0 丢包、AI 访问不封号、4K 流媒体高码率秒开</strong>”。<strong>{airport.name}</strong> 凭借 <strong>{airport.tagline}</strong>，在同价位梯子服务商中展现出了鲜明的定位优势。
+              {editorial.executiveSummary}
             </p>
             <div class="p-4 rounded-2xl bg-[var(--bg-card)] border border-[var(--border-subtle)] grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
               <div>
@@ -251,12 +246,12 @@ const faqSchema = {
                 <div class="text-base font-bold text-[var(--text-main)] font-mono">{airport.protocols[0] || 'VLESS'}</div>
               </div>
               <div>
-                <div class="text-[11px] text-[var(--text-dim)]">推荐指数</div>
+                <div class="text-[11px] text-[var(--text-dim)]">综合评分</div>
                 <div class="text-base font-bold text-amber-500 font-mono">★ {airport.rating || 4.7}</div>
               </div>
             </div>
             <p class="text-xs text-[var(--text-dim)] leading-relaxed">
-              🔗 相关主题导航：<a href="/recommend/" class="text-emerald-600 dark:text-emerald-400 hover:underline">2026精选机场推荐</a> · <a href="/airports/stable/" class="text-emerald-600 dark:text-emerald-400 hover:underline">稳定专线机场合集</a> · <a href="/airports/cheap/" class="text-emerald-600 dark:text-emerald-400 hover:underline">便宜高性价比专区</a>
+              🔗 相关主题导航：<a href="/recommend/" class="text-emerald-600 dark:text-emerald-400 hover:underline">精选机场推荐</a> · <a href="/airports/stable/" class="text-emerald-600 dark:text-emerald-400 hover:underline">稳定专线合集</a> · <a href="/airports/cheap/" class="text-emerald-600 dark:text-emerald-400 hover:underline">高性价比专区</a>
             </p>
           </article>
 
@@ -264,16 +259,16 @@ const faqSchema = {
           <article class="p-6 sm:p-8 rounded-3xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-4">
             <h2 class="text-xl font-bold text-[var(--text-main)] flex items-center gap-2">
               <span class="w-2 h-5 bg-emerald-500 rounded-sm"></span>
-              一、品牌背景、运营历史与资质审计
+              一、品牌背景、资质审计与资费策略
             </h2>
             <p class="text-sm text-[var(--text-muted)] leading-relaxed">
-              <strong>{airport.name}</strong> 开业运营于 <strong>{airport.openedYear || 2023} 年</strong>。在机场行业“鱼龙混杂、跑路盘频发”的背景下，运营时长是检验一个服务商抗风险能力与财务健康度的核心指标。
+              {editorial.brandAnalysis}
             </p>
             <p class="text-sm text-[var(--text-muted)] leading-relaxed">
-              从结算支持来看，{airport.name} 开放了 {airport.paymentMethods ? airport.paymentMethods.join('、') : '支付宝、微信及 USDT'} 多种支付途径。在客户服务方面，提供在线工单与 Telegram 官方频道支持，在敏感时期能及时发布线路调度与节点维护公告。
+              {editorial.pricingAdvice}
             </p>
             <div class="p-4 rounded-xl bg-amber-500/10 border border-amber-500/20 text-xs text-amber-800 dark:text-amber-300">
-              💡 <strong>机场搜选购安全铁律：</strong>无论选择任何机场，本站均强烈建议新用户<strong>首选月付周期</strong>，切勿因大额年付折扣而一次性投入过多资金。详见 <a href="/answers/how-to-judge/" class="underline font-bold">《如何客观判断机场是否可靠》</a> 与 <a href="/answers/runaway-warning-signs/" class="underline font-bold">《机场跑路前兆排查》</a>。
+              💡 <strong>选购安全建议：</strong>无论选择任何服务商，均强烈建议新用户<strong>首选单月订阅周期</strong>，避免一次性投入过长周期的资金。详见 <a href="/answers/how-to-judge/" class="underline font-bold">《如何客观判断服务商是否可靠》</a> 与 <a href="/answers/runaway-warning-signs/" class="underline font-bold">《服务异常前兆排查》</a>。
             </div>
           </article>
 
@@ -283,7 +278,7 @@ const faqSchema = {
               <div class="flex flex-wrap items-center justify-between gap-2 border-b border-[var(--border-subtle)] pb-3">
                 <h2 class="text-xl font-bold text-[var(--text-main)] flex items-center gap-2">
                   <span class="w-2 h-5 bg-emerald-500 rounded-sm"></span>
-                  二、2026 节点测速实测数据与延迟解读
+                  二、节点测速实测数据与延迟解读
                 </h2>
                 <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 font-mono font-bold">
                   EVIDENCE VERIFIED
@@ -297,13 +292,13 @@ const faqSchema = {
               <div class="rounded-2xl overflow-hidden border border-[var(--border-subtle)] bg-[#0c1612] p-2 shadow-inner group">
                 <img
                   src={benchmark.file}
-                  alt={`${airport.name} 2026最新节点测速实测原始截图`}
+                  alt={`${airport.name} 节点测速实测原始数据截图`}
                   class="w-full h-auto object-contain rounded-xl hover:scale-[1.01] transition-transform duration-300"
                   loading="lazy"
                 />
               </div>
               <p class="text-xs text-[var(--text-dim)] leading-relaxed">
-                实测数据显示，{airport.name} 主力地区节点平均握手延迟保持在优质区间，丢包率收敛极佳。有关测速方法论请阅读：<a href="/answers/speed-test-method/" class="text-emerald-600 dark:text-emerald-400 underline">《如何科学进行节点压测》</a>。
+                实测数据显示，{airport.name} 主力地区节点平均握手延迟保持在稳定区间，丢包率收敛良好。测速方法论说明：<a href="/answers/speed-test-method/" class="text-emerald-600 dark:text-emerald-400 underline">《如何科学进行网络测速》</a>。
               </p>
             </article>
           )}
@@ -315,7 +310,7 @@ const faqSchema = {
               三、骨干专线与协议架构深度剖析
             </h2>
             <p class="text-sm text-[var(--text-muted)] leading-relaxed">
-              {airport.name} 采用 <strong>{airport.routes.join(' + ')}</strong> 传输体系。
+              {editorial.networkAnalysis}
             </p>
             <ul class="space-y-2 text-xs text-[var(--text-muted)]">
               <li class="flex items-start gap-2">
@@ -324,7 +319,7 @@ const faqSchema = {
               </li>
               <li class="flex items-start gap-2">
                 <span class="text-emerald-600 dark:text-emerald-400 font-bold">•</span>
-                <span><strong>节点地域覆盖：</strong>包含 <code>{airport.regions.join('、')}</code> 等核心跨境枢纽，能满足跨境办公与跨区流媒体解锁需求。</span>
+                <span><strong>节点地域覆盖：</strong>包含 <code>{airport.regions.join('、')}</code> 等核心网络枢纽，能满足跨境办公与跨区流媒体访问需求。</span>
               </li>
             </ul>
           </article>
@@ -333,9 +328,12 @@ const faqSchema = {
           <article class="p-6 sm:p-8 rounded-3xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-4">
             <h2 class="text-xl font-bold text-[var(--text-main)] flex items-center gap-2">
               <span class="w-2 h-5 bg-emerald-500 rounded-sm"></span>
-              四、AI 生产力与 4K 流媒体全场景解锁实测
+              四、AI 生产力与 4K 流媒体场景实测
             </h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <p class="text-sm text-[var(--text-muted)] leading-relaxed">
+              {editorial.aiStreamingAnalysis}
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
               <div class="p-5 rounded-2xl bg-[var(--bg-card)] border border-[var(--border-subtle)] space-y-2">
                 <div class="text-xs font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5">
                   <span>🤖</span> AI 工具支持 (ChatGPT / Claude / Gemini)
@@ -355,11 +353,11 @@ const faqSchema = {
                   <span>🎬</span> 4K 流媒体 (Netflix / Disney+ / YouTube)
                 </div>
                 <p class="text-xs text-[var(--text-muted)] leading-relaxed">
-                  {airport.streaming.note || '主流香港与新加坡节点已配置原生家宽 DNS 分流，可解锁 Netflix 4K 与 Disney+ 高清播放。'}
+                  {airport.streaming.note || '主流香港与新加坡节点已配置原生分流，可支持 Netflix 4K 与 Disney+ 高清播放。'}
                 </p>
                 <div class="pt-1">
                   <a href="/scenarios/netflix/" class="text-[11px] font-semibold text-emerald-600 dark:text-emerald-400 hover:underline">
-                    查看 Netflix 4K 解锁与流媒体机场专题 →
+                    查看 Netflix 4K 解锁与流媒体专用专题 →
                   </a>
                 </div>
               </div>
@@ -370,10 +368,10 @@ const faqSchema = {
           <article class="p-6 sm:p-8 rounded-3xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-4">
             <h2 class="text-xl font-bold text-[var(--text-main)] flex items-center gap-2">
               <span class="w-2 h-5 bg-emerald-500 rounded-sm"></span>
-              五、主流客户端配置与一键订阅导入教程
+              五、主流客户端配置与设备适配指引
             </h2>
             <p class="text-sm text-[var(--text-muted)] leading-relaxed">
-              <strong>{airport.name}</strong> 兼容目前市面上全部主流跨平台代理客户端。推荐按您的设备类型选择最佳客户端：
+              {editorial.clientRecommendation}
             </p>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
               <a href="/clients/clash/" class="p-3.5 rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)] hover:border-emerald-500/40 block group">
@@ -517,14 +515,14 @@ const faqSchema = {
             </div>
           </article>
 
-          <!-- Chapter 8: Frequently Asked Questions (GEO Structured FAQ) -->
+          <!-- Chapter 8: Frequently Asked Questions (Bespoke Structured FAQ) -->
           <article id="faqs" class="p-6 sm:p-8 rounded-3xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-6">
             <h2 class="text-xl font-bold text-[var(--text-main)] flex items-center gap-2">
               <span class="w-2 h-5 bg-emerald-500 rounded-sm"></span>
               八、常见高频问题解答 (FAQ)
             </h2>
             <div class="space-y-4">
-              {faqs.map((faq, idx) => (
+              {editorial.faqs.map((faq, idx) => (
                 <div class="p-4 rounded-2xl bg-[var(--bg-card)] border border-[var(--border-subtle)] space-y-2">
                   <h3 class="text-sm font-bold text-[var(--text-main)] flex items-start gap-2">
                     <span class="text-emerald-600 dark:text-emerald-400 font-mono font-bold">Q{idx + 1}:</span>
@@ -594,7 +592,7 @@ const faqSchema = {
               <a
                 href={airport.affiliateUrl}
                 target="_blank"
-                rel="nofollow noopener noreferrer"
+                rel="nofollow sponsored noopener noreferrer"
                 class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold text-center block shadow-md transition-colors"
               >
                 直达 {airport.name} 官网 ↗

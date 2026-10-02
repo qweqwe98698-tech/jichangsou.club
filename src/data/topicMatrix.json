@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "description": "GEO & SEO 专题主线方向矩阵主题库，每4天由自动化脚本提取发布，支持自动追踪状态与动态延伸选题",
-  "lastUpdated": "2026-10-02T09:35:23.965Z",
+  "lastUpdated": "2026-10-02T09:45:52.479Z",
   "topics": [
     {
       "id": "geo-001",
@@ -33,9 +33,9 @@
         "Scamalytics 欺诈分"
       ],
       "focusAngle": "使用 ipinfo、bgp.tools 与 scamalytics 拆解双 ISP 与 Hosting 机房的 ASN 路由特征，讲解为什么商业 AI 大模型对机房 IP 实施严格降权与封号。",
-      "published": false,
-      "publishedAt": null,
-      "publishedSlug": null
+      "published": true,
+      "publishedAt": "2026-10-02T09:45:52.479Z",
+      "publishedSlug": "residential-ip-vs-datacenter-proxy-for-ai"
     },
     {
       "id": "geo-003",

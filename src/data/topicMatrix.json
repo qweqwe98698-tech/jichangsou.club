@@ -1,0 +1,415 @@
+{
+  "version": "1.0.0",
+  "description": "GEO & SEO 专题主线方向矩阵主题库，每4天由自动化脚本提取发布，支持自动追踪状态与动态延伸选题",
+  "lastUpdated": "2026-10-02T09:35:23.965Z",
+  "topics": [
+    {
+      "id": "geo-001",
+      "slug": "claude-code-subagent-ip-ban-solution",
+      "title": "Claude Code 终端与 Subagent 频繁遭遇 403 封号？2026 纯净网络排障实战指南",
+      "category": "AI 工具排障",
+      "coreKeywords": [
+        "Claude Code 报错 403",
+        "Anthropic 访问封禁",
+        "Subagent 终端代理",
+        "双 ISP 住宅原生 IP",
+        "TUN 模式分流"
+      ],
+      "focusAngle": "针对 Anthropic 最新风控模型，深入分析终端多线程请求被识别机房 IP 并下发 403 Forbidden 的技术机制，提供 TUN 规则分流与纯净 IP 排查步骤。",
+      "published": true,
+      "publishedAt": "2026-10-02T09:35:23.965Z",
+      "publishedSlug": "claude-code-subagent-ip-ban-solution"
+    },
+    {
+      "id": "geo-002",
+      "slug": "residential-ip-vs-datacenter-proxy-for-ai",
+      "title": "双 ISP 住宅 IP 与数据中心机房 IP 深度实测：AI 开发者如何自查节点纯净度？",
+      "category": "协议原理",
+      "coreKeywords": [
+        "住宅 IP 区别",
+        "数据中心机房 IP",
+        "双 ISP 判定",
+        "IP 纯净度检测",
+        "Scamalytics 欺诈分"
+      ],
+      "focusAngle": "使用 ipinfo、bgp.tools 与 scamalytics 拆解双 ISP 与 Hosting 机房的 ASN 路由特征，讲解为什么商业 AI 大模型对机房 IP 实施严格降权与封号。",
+      "published": false,
+      "publishedAt": null,
+      "publishedSlug": null
+    },
+    {
+      "id": "geo-003",
+      "slug": "hysteria2-udp-qos-bandwidth-tuning",
+      "title": "Hysteria2 协议底层原理与 Brutal 拥塞控制：晚高峰极端弱网带宽调优实录",
+      "category": "协议原理",
+      "coreKeywords": [
+        "Hysteria2 调优",
+        "Brutal 拥塞控制",
+        "UDP QoS 限速对抗",
+        "端口跳跃 Port Hopping",
+        "BBRv3 延迟对比"
+      ],
+      "focusAngle": "从 QUIC 握手与 Brutal 算法设计切入，对比标准 TCP BBR 与 Hysteria2 在 20% 高丢包率下的吞吐表现，提供防运营商 UDP QoS 的端口跳跃配置。",
+      "published": false,
+      "publishedAt": null,
+      "publishedSlug": null
+    },
+    {
+      "id": "geo-004",
+      "slug": "sing-box-rule-provider-smart-routing",
+      "title": "sing-box 规则集深度架构指南：Rule Set 模块化分离与 DNS 零泄露配置实战",
+      "category": "客户端技巧",
+      "coreKeywords": [
+        "sing-box 教程",
+        "Rule Set 规则集",
+        "DNS 泄露防护",
+        "VLESS Reality sing-box",
+        "分流路由配置"
+      ],
+      "focusAngle": "彻底解构 sing-box 的 JSON 规则结构，实操展示 route.rule_set 远程订阅引入、内置 Fake-IP 独立协议栈与国内外 DNS 精准分流。",
+      "published": false,
+      "publishedAt": null,
+      "publishedSlug": null
+    },
+    {
+      "id": "geo-005",
+      "slug": "vless-reality-sni-stealing-benchmark",
+      "title": "VLESS Reality 伪装域名 SNI 偷取机制实测：微软、苹果与 Cloudflare 证书存活率评测",
+      "category": "协议原理",
+      "coreKeywords": [
+        "VLESS Reality 域名",
+        "SNI 伪装机制",
+        "TLS 证书指纹",
+        "Reality 目标域名推荐",
+        "抗封锁存活率"
+      ],
+      "focusAngle": "抓包分析 Reality 借用合规外部大厂 TLS 1.3 握手证书的原理，对比偷苹果、偷微软、偷海外 CDN 的主动探测阻断率与延迟差异。",
+      "published": false,
+      "publishedAt": null,
+      "publishedSlug": null
+    },
+    {
+      "id": "geo-006",
+      "slug": "iplc-dedicated-line-jitter-latency-test",
+      "title": "IPLC / IEPL 物理专线与普通公网中转链路对比：抖动、丢包与路由环路深度实测",
+      "category": "专线工程",
+      "coreKeywords": [
+        "IPLC 实测",
+        "IEPL 专线原理",
+        "网络抖动 Jitter",
+        "跨境公网拥堵",
+        "BGP 入口机房"
+      ],
+      "focusAngle": "通过 MTR 持续 24 小时监控公网中转与物理内网专线的往返延迟（RTT）与抖动标准差，揭示物理海底光缆内网直连的技术成本与稳定性基石。",
+      "published": false,
+      "publishedAt": null,
+      "publishedSlug": null
+    },
+    {
+      "id": "geo-007",
+      "slug": "shadowsocks-2022-blake3-anti-probing",
+      "title": "Shadowsocks 2022 规范技术解析：BLAKE3 消息认证与抵御主动探测工程实现",
+      "category": "协议原理",
+      "coreKeywords": [
+        "Shadowsocks 2022",
+        "BLAKE3 散列",
+        "重放攻击防护",
+        "主动探测防御",
+        "2026 代理协议演进"
+      ],
+      "focusAngle": "解读 SS-2022 为什么要废弃老旧流加密、引入固定长度会话头与单向单目密钥派生，分析骨干网主动重放嗅探下的防御机制。",
+      "published": false,
+      "publishedAt": null,
+      "publishedSlug": null
+    },
+    {
+      "id": "geo-008",
+      "slug": "chatgpt-realtime-api-websocket-timeout",
+      "title": "OpenAI Realtime API 与 GPT-4o 语音 WebSocket 频繁中断？TCP KeepAlive 与 TUN 调优",
+      "category": "AI 工具排障",
+      "coreKeywords": [
+        "ChatGPT 语音中断",
+        "Realtime API WebSocket",
+        "TCP Keepalive 优化",
+        "TUN 虚拟网卡代理",
+        "长连接断流"
+      ],
+      "focusAngle": "剖析双向低延迟 WebSocket 在代理客户端中的超时断连机理，提供 Clash 与 sing-box 中调整 udp-timeout、keep-alive 及独立分流规则的方案。",
+      "published": false,
+      "publishedAt": null,
+      "publishedSlug": null
+    },
+    {
+      "id": "geo-009",
+      "slug": "fake-ip-vs-redir-host-dns-leak-fix",
+      "title": "Fake-IP 模式与 Redir-Host 模式根本区别：如何彻底杜绝 DNS 污染与跨境泄露",
+      "category": "安全与风控",
+      "coreKeywords": [
+        "Fake-IP 原理",
+        "Redir-Host 缺点",
+        "DNS 泄露测试",
+        "针对性 DNS 污染",
+        "Clash DNS 配置"
+      ],
+      "focusAngle": "对比 Fake-IP (198.18.0.0/16 虚假地址池) 与传统 Redir-Host 在系统网络栈中的解析时序，详解为什么 Fake-IP 才能从根本上阻断国内明文 DNS 查询泄露。",
+      "published": false,
+      "publishedAt": null,
+      "publishedSlug": null
+    },
+    {
+      "id": "geo-010",
+      "slug": "clash-verge-rev-scripting-and-merge",
+      "title": "Clash Verge Rev 扩展脚本实战：自动合并订阅、自定义规则与节点测速排序",
+      "category": "客户端技巧",
+      "coreKeywords": [
+        "Clash Verge Rev 脚本",
+        "Merge 扩展配置",
+        "自动追加规则",
+        "多订阅合并",
+        "节点命名正则过滤"
+      ],
+      "focusAngle": "利用 JavaScript 编写 Clash Verge Rev 的扩展脚本（Merge Script），演示如何自动去广告规则、智能追加私有分流域名，并按区域自动归类节点代理组。",
+      "published": false,
+      "publishedAt": null,
+      "publishedSlug": null
+    },
+    {
+      "id": "geo-011",
+      "slug": "headless-linux-server-proxy-daemon-setup",
+      "title": "Linux 无头服务器命令行代理全套方案：sing-box 守护进程与 Systemd 故障自愈",
+      "category": "进阶技巧",
+      "coreKeywords": [
+        "Linux 命令行代理",
+        "sing-box systemd 服务",
+        "无头服务器科学上网",
+        "TPROXY 透明代理",
+        "自动重启脚本"
+      ],
+      "focusAngle": "面向云服务器与开发测试机，手把手演示 sing-box 编译安装、Systemd unit 配置文件编写、tproxy 内核转发规则配置与故障自愈探针。",
+      "published": false,
+      "publishedAt": null,
+      "publishedSlug": null
+    },
+    {
+      "id": "geo-012",
+      "slug": "surge-enterprise-outbound-load-balance",
+      "title": "Surge 5 与高阶客户端企业级多出口分流：负载均衡、Fallback 故障转移实战",
+      "category": "客户端技巧",
+      "coreKeywords": [
+        "Surge 5 教程",
+        "负载均衡 Load Balance",
+        "Fallback 容灾切换",
+        "策略组配置",
+        "企业跨国办公分流"
+      ],
+      "focusAngle": "分析企业与重度开发者在多出口场景下的容灾诉求，讲解 round-robin 轮询、consistent-hashing 一致性哈希与 fallback 自动切流在 Surge 中的实现逻辑。",
+      "published": false,
+      "publishedAt": null,
+      "publishedSlug": null
+    },
+    {
+      "id": "geo-013",
+      "slug": "webrtc-ip-leak-browser-fingerprint-defense",
+      "title": "WebRTC 真实 IP 泄露原理与海外风控浏览器指纹对抗配置手册",
+      "category": "安全与风控",
+      "coreKeywords": [
+        "WebRTC 泄露检测",
+        "浏览器指纹 Canvas",
+        "防海外封号",
+        "Chrome 禁用 WebRTC",
+        "指纹浏览器伪装"
+      ],
+      "focusAngle": "通过 STUN 协议原理演示即便开启全局代理，浏览器 WebRTC API 仍可探测到内网与公网真实 IP 的致命缺陷，给出各主流浏览器与客户端的加固方案。",
+      "published": false,
+      "publishedAt": null,
+      "publishedSlug": null
+    },
+    {
+      "id": "geo-014",
+      "slug": "netflix-disney-non-original-unlock-logic",
+      "title": "Netflix 非自制剧与 Disney+ 解锁原理：住宅代理、DNS 解锁与 SNI 代理架构差异",
+      "category": "流媒体解锁",
+      "coreKeywords": [
+        "Netflix 解锁原理",
+        "自制剧 vs 非自制剧",
+        "DNS 解锁服务器",
+        "SNI Proxy 分流",
+        "家庭宽带住宅节点"
+      ],
+      "focusAngle": "科普为什么流媒体平台对机房 IP 只开放自制剧，揭秘机场服务商背后的 DNS 解锁与落地机双层分流架构，教你一眼看出真解锁还是假伪装。",
+      "published": false,
+      "publishedAt": null,
+      "publishedSlug": null
+    },
+    {
+      "id": "geo-015",
+      "slug": "udp-port-hopping-gaming-packet-loss",
+      "title": "跨国游戏联机 NAT 类型优化与 UDP 端口跳跃实战：告别晚高峰跳 ping 与丢包",
+      "category": "进阶技巧",
+      "coreKeywords": [
+        "游戏联机加速",
+        "FullCone NAT",
+        "UDP 端口跳跃",
+        "晚高峰丢包解决",
+        "Switch PS5 联机报错"
+      ],
+      "focusAngle": "深入 NAT1 (FullCone) 到 NAT4 (Symmetric) 的网络阻断模型，结合 Hysteria2 端口跳跃与客户端 TUN 配置，把联机游戏丢包率压制到 0.5% 以下。",
+      "published": false,
+      "publishedAt": null,
+      "publishedSlug": null
+    },
+    {
+      "id": "geo-016",
+      "slug": "git-clone-docker-pull-speedup-guide",
+      "title": "开发者跨境网络提速全景图：Git 终端代理、Docker Hub 镜像加速与 pip 依赖秒下",
+      "category": "进阶技巧",
+      "coreKeywords": [
+        "Git 终端代理配置",
+        "Docker Hub 拉取超时",
+        "npm 镜像代理",
+        "export http_proxy",
+        "终端命令行环境变量"
+      ],
+      "focusAngle": "系统化解决开发者最常遇到的终端命令不走代理问题：详解 git config http.proxy、docker daemon proxy 配置、以及 bash/zsh profile 别名自动注入。",
+      "published": false,
+      "publishedAt": null,
+      "publishedSlug": null
+    },
+    {
+      "id": "geo-017",
+      "slug": "airport-runaway-early-warning-financial-model",
+      "title": "机场跑路前兆的经济学分析：低价年付陷阱、Affiliate 倒贴与运维成本核算",
+      "category": "选购指南",
+      "coreKeywords": [
+        "机场跑路预警",
+        "低价机场陷阱",
+        "专线成本核算",
+        "Affiliate 佣金倒贴",
+        "如何避开跑路机场"
+      ],
+      "focusAngle": "从 1Gbps IPLC 专线月租与机房带宽真实成本算一笔经济账，剖析某些超低价“9.9包年”机场如何利用资金池运作并在高峰期卷款跑路的商业本质。",
+      "published": false,
+      "publishedAt": null,
+      "publishedSlug": null
+    },
+    {
+      "id": "geo-018",
+      "slug": "asn-routing-bgp-peering-analysis",
+      "title": "跨境网络骨干网 BGP 互联与 ASN 路由漫游：为什么香港节点会绕道美国？",
+      "category": "专线工程",
+      "coreKeywords": [
+        "BGP 路由绕行",
+        "ASN 路由表",
+        "骨干网互联 Peering",
+        "回程路由排查",
+        "Traceroute 路由追踪"
+      ],
+      "focusAngle": "解释骨干运营商之间由于商用互联结算策略导致的冷土豆/热土豆路由绕路现象，教用户利用 Best Trace 与 NextTrace 工具精准分析三网去程与回程链路。",
+      "published": false,
+      "publishedAt": null,
+      "publishedSlug": null
+    },
+    {
+      "id": "geo-019",
+      "slug": "tuic-v5-quic-protocol-performance-test",
+      "title": "TUIC v5 协议与 QUIC 拥塞算法深度实测：在恶劣蜂窝网络下的高吞吐表现",
+      "category": "协议原理",
+      "coreKeywords": [
+        "TUIC v5 评测",
+        "QUIC 协议代理",
+        "蜂窝网络 4G 5G 加速",
+        "0-RTT 握手",
+        "高丢包抗性"
+      ],
+      "focusAngle": "解读 TUIC 协议对标准 QUIC 状态机的优化改造，对比在地铁、电梯等频繁基站切换场景下的 0-RTT 握手恢复速度与抗抖动特性。",
+      "published": false,
+      "publishedAt": null,
+      "publishedSlug": null
+    },
+    {
+      "id": "geo-020",
+      "slug": "macos-ios-surge-smart-ruleset-maintenance",
+      "title": "苹果生态 Surge / Loon 规则集维护最佳实践：GEOIP、域名通配符与定时自动更新",
+      "category": "客户端技巧",
+      "coreKeywords": [
+        "Surge 规则集维护",
+        "Loon 配置教程",
+        "苹果全家桶分流",
+        "域名通配符规则",
+        "定时更新规则集"
+      ],
+      "focusAngle": "分享一套面向 macOS 与 iOS 的优雅规则维护哲学：避免冗余数万条杂乱规则导致内存暴涨，讲解如何用轻量级规则集与 DOMAIN-SUFFIX 做到高效智能分流。",
+      "published": false,
+      "publishedAt": null,
+      "publishedSlug": null
+    },
+    {
+      "id": "geo-021",
+      "slug": "tls-1-3-ech-encrypted-sni-deployment",
+      "title": "TLS 1.3 与 ECH (Encrypted Client Hello) 落地实测：彻底终结 SNI 阻断时代",
+      "category": "协议原理",
+      "coreKeywords": [
+        "ECH 加密 SNI",
+        "TLS 1.3 ECH",
+        "DoH DNS 解析",
+        "Cloudflare ECH 测试",
+        "对抗域名阻断"
+      ],
+      "focusAngle": "拆解从 ESNI 演进至 ECH 的技术演进历程，分析客户端与权威 DNS 如何通过 HTTPS RR 记录交换公钥，从而把客户端握手 SNI 彻底加密的防嗅探机制。",
+      "published": false,
+      "publishedAt": null,
+      "publishedSlug": null
+    },
+    {
+      "id": "geo-022",
+      "slug": "cross-border-ssh-tunnel-mosh-keepalive",
+      "title": "跨国远程服务器运维连接防卡死指南：SSH 隧道优化、Mosh 协议与 TCP Keepalive",
+      "category": "进阶技巧",
+      "coreKeywords": [
+        "跨国 SSH 卡顿",
+        "Mosh 移动 Shell",
+        "ServerAliveInterval 优化",
+        "SSH 代理隧道",
+        "云服务器远程开发"
+      ],
+      "focusAngle": "面向跨国 DevOps 工程师，排查 SSH 会话遭遇跨境公网随机 RST 丢包卡死的痛点，提供 ClientAliveInterval 参数设置、ProxyCommand 配合以及 Mosh UDP 漫游实战。",
+      "published": false,
+      "publishedAt": null,
+      "publishedSlug": null
+    },
+    {
+      "id": "geo-023",
+      "slug": "multihop-chain-proxy-privacy-security",
+      "title": "多跳链式代理 (Chain Proxy) 原理与实操：在极致隐私与传输延迟间的技术取舍",
+      "category": "进阶技巧",
+      "coreKeywords": [
+        "链式代理配置",
+        "多跳代理 Relay",
+        "前置代理与落地代理",
+        "高隐私安全",
+        "代理转发延迟测试"
+      ],
+      "focusAngle": "讲解前置入口节点与境外落地节点的链式组合原理，既能利用国内专线实现低延迟过境，又能借用海外住宅落地机隐藏访问痕迹，平衡安全与速度。",
+      "published": false,
+      "publishedAt": null,
+      "publishedSlug": null
+    },
+    {
+      "id": "geo-024",
+      "slug": "shadowrocket-advanced-module-script-guide",
+      "title": "小火箭 Shadowrocket 高级模块与重写脚本：去广告、MITM 与智能分流进阶",
+      "category": "客户端技巧",
+      "coreKeywords": [
+        "Shadowrocket 教程",
+        "小火箭模块导入",
+        "MITM 解密脚本",
+        "HTTPS 重写规则",
+        "iOS 代理工具进阶"
+      ],
+      "focusAngle": "针对 iOS 平台用户，深入讲解 Shadowrocket 的 HTTPS 解密（MITM）证书生成、模块订阅、通知脚本以及针对国内外常见流媒体的精细化分流策略。",
+      "published": false,
+      "publishedAt": null,
+      "publishedSlug": null
+    }
+  ]
+}

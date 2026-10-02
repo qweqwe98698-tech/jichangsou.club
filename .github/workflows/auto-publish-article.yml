@@ -1,0 +1,71 @@
+name: Auto Publish GEO Pillar Article
+
+on:
+  schedule:
+    # Runs every 4 days at 03:00 UTC (11:00 AM CST)
+    - cron: '0 3 */4 * *'
+  workflow_dispatch:
+    # Allows manual trigger via GitHub Actions UI
+
+permissions:
+  contents: write
+
+jobs:
+  publish-article:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Generate DeepSeek GEO Article & Update Matrix
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+        run: node scripts/generate-geo-article.js
+
+      - name: Build Site & Verify SEO Release Gate
+        run: npm run build
+
+      - name: Ping Bing Direct & IndexNow Hub
+        run: npm run indexnow
+        continue-on-error: true
+
+      - name: Commit & Push Changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Stage new articles and updated matrix & baseline
+          git add src/data/articles/ src/data/topicMatrix.json .seo-baseline.json
+          
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            # Extract published article title for informative commit message (NO [skip ci])
+            ARTICLE_TITLE=$(node -e "
+              const fs = require('fs');
+              try {
+                const matrix = JSON.parse(fs.readFileSync('src/data/topicMatrix.json', 'utf8'));
+                const published = matrix.topics.filter(t => t.published);
+                const last = published[published.length - 1];
+                console.log(last ? last.title : '新文章');
+              } catch(e) {
+                console.log('新文章');
+              }
+            ")
+            
+            echo "Committing article: $ARTICLE_TITLE"
+            git commit -m "feat(content): 自动发布 GEO 专题矩阵深度文章 - ${ARTICLE_TITLE}"
+            git push origin main
+          fi

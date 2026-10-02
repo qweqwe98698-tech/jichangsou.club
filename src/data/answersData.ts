@@ -1043,10 +1043,29 @@ git config --global https.proxy http://127.0.0.1:7897</code></pre>
   },
 ];
 
+// Dynamically import any generated articles from src/data/articles/*.json
+const dynamicArticles: AnswerArticle[] = [];
+try {
+  // @ts-ignore
+  const globModules = import.meta.glob('./articles/*.json', { eager: true });
+  for (const path in globModules) {
+    const mod = globModules[path] as any;
+    const article = mod.default || mod;
+    if (article && article.slug && article.title) {
+      dynamicArticles.push(article as AnswerArticle);
+    }
+  }
+} catch (e) {
+  // Fallback if not running in Vite
+}
+
+export const allAnswersList: AnswerArticle[] = [...answersData, ...dynamicArticles];
+
 export function getAnswerBySlug(slug: string): AnswerArticle | undefined {
-  return answersData.find((a) => a.slug === slug);
+  return allAnswersList.find((a) => a.slug === slug);
 }
 
 export function getAllAnswers(): AnswerArticle[] {
-  return answersData;
+  return allAnswersList;
 }
+

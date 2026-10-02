@@ -27,20 +27,25 @@ console.log(`Payload preview:`, JSON.stringify({ ...indexNowPayload, urlList: ur
 fs.writeFileSync(path.resolve('dist/indexnow-payload.json'), JSON.stringify(indexNowPayload, null, 2));
 console.log('Saved dist/indexnow-payload.json for deployment triggers.');
 
-// Proactively post to IndexNow API
-try {
-  console.log('Sending IndexNow payload to Bing & IndexNow API...');
-  const res = await fetch('https://api.indexnow.org/indexnow', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json; charset=utf-8' },
-    body: JSON.stringify(indexNowPayload),
-  });
-  console.log(`IndexNow API Response Status: ${res.status} ${res.statusText}`);
-  if (res.ok || res.status === 200 || res.status === 202) {
-    console.log('✅ Successfully submitted all URLs to IndexNow!');
-  } else {
-    console.log(`⚠️ IndexNow returned status ${res.status}. Payload is preserved in dist/indexnow-payload.json.`);
+// Proactively post to Bing & IndexNow APIs
+async function postIndexNow(endpoint, label) {
+  try {
+    console.log(`Sending IndexNow payload to ${label} (${endpoint})...`);
+    const res = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json; charset=utf-8' },
+      body: JSON.stringify(indexNowPayload),
+    });
+    console.log(`[${label}] Status: ${res.status} ${res.statusText}`);
+    if (res.ok || res.status === 200 || res.status === 202) {
+      console.log(`✅ [${label}] Successfully accepted all ${urlList.length} URLs!`);
+    } else {
+      console.log(`⚠️ [${label}] Status: ${res.status}`);
+    }
+  } catch (err) {
+    console.warn(`⚠️ [${label}] Network notice: ${err.message}`);
   }
-} catch (err) {
-  console.warn('⚠️ Network notice: could not reach api.indexnow.org directly (offline or timeout). Payload is preserved in dist/indexnow-payload.json.');
 }
+
+await postIndexNow('https://www.bing.com/indexnow', 'Bing Direct');
+await postIndexNow('https://api.indexnow.org/indexnow', 'IndexNow Protocol Hub');

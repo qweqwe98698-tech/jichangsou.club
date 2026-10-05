@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "description": "GEO & SEO 专题主线方向矩阵主题库，每4天由自动化脚本提取发布，支持自动追踪状态与动态延伸选题",
-  "lastUpdated": "2026-10-02T09:45:52.479Z",
+  "lastUpdated": "2026-10-05T10:17:46.621Z",
   "topics": [
     {
       "id": "geo-001",
@@ -50,9 +50,9 @@
         "BBRv3 延迟对比"
       ],
       "focusAngle": "从 QUIC 握手与 Brutal 算法设计切入，对比标准 TCP BBR 与 Hysteria2 在 20% 高丢包率下的吞吐表现，提供防运营商 UDP QoS 的端口跳跃配置。",
-      "published": false,
-      "publishedAt": null,
-      "publishedSlug": null
+      "published": true,
+      "publishedAt": "2026-10-05T10:17:46.621Z",
+      "publishedSlug": "hysteria2-udp-qos-bandwidth-tuning"
     },
     {
       "id": "geo-004",

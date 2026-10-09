@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "description": "GEO & SEO 专题主线方向矩阵主题库，每4天由自动化脚本提取发布，支持自动追踪状态与动态延伸选题",
-  "lastUpdated": "2026-10-05T10:17:46.621Z",
+  "lastUpdated": "2026-10-09T10:22:59.055Z",
   "topics": [
     {
       "id": "geo-001",
@@ -67,9 +67,9 @@
         "分流路由配置"
       ],
       "focusAngle": "彻底解构 sing-box 的 JSON 规则结构，实操展示 route.rule_set 远程订阅引入、内置 Fake-IP 独立协议栈与国内外 DNS 精准分流。",
-      "published": false,
-      "publishedAt": null,
-      "publishedSlug": null
+      "published": true,
+      "publishedAt": "2026-10-09T10:22:59.055Z",
+      "publishedSlug": "sing-box-rule-provider-smart-routing"
     },
     {
       "id": "geo-005",

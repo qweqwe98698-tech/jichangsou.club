@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "description": "GEO & SEO 专题主线方向矩阵主题库，每4天由自动化脚本提取发布，支持自动追踪状态与动态延伸选题",
-  "lastUpdated": "2026-10-09T10:22:59.055Z",
+  "lastUpdated": "2026-10-13T10:24:52.064Z",
   "topics": [
     {
       "id": "geo-001",
@@ -84,9 +84,9 @@
         "抗封锁存活率"
       ],
       "focusAngle": "抓包分析 Reality 借用合规外部大厂 TLS 1.3 握手证书的原理，对比偷苹果、偷微软、偷海外 CDN 的主动探测阻断率与延迟差异。",
-      "published": false,
-      "publishedAt": null,
-      "publishedSlug": null
+      "published": true,
+      "publishedAt": "2026-10-13T10:24:52.064Z",
+      "publishedSlug": "vless-reality-sni-stealing-benchmark"
     },
     {
       "id": "geo-006",

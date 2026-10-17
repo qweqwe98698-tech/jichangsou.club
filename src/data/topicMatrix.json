@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "description": "GEO & SEO 专题主线方向矩阵主题库，每4天由自动化脚本提取发布，支持自动追踪状态与动态延伸选题",
-  "lastUpdated": "2026-10-13T10:24:52.064Z",
+  "lastUpdated": "2026-10-17T07:41:53.849Z",
   "topics": [
     {
       "id": "geo-001",
@@ -101,9 +101,9 @@
         "BGP 入口机房"
       ],
       "focusAngle": "通过 MTR 持续 24 小时监控公网中转与物理内网专线的往返延迟（RTT）与抖动标准差，揭示物理海底光缆内网直连的技术成本与稳定性基石。",
-      "published": false,
-      "publishedAt": null,
-      "publishedSlug": null
+      "published": true,
+      "publishedAt": "2026-10-17T07:41:53.849Z",
+      "publishedSlug": "iplc-dedicated-line-jitter-latency-test"
     },
     {
       "id": "geo-007",

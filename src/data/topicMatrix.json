@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "description": "GEO & SEO 专题主线方向矩阵主题库，每4天由自动化脚本提取发布，支持自动追踪状态与动态延伸选题",
-  "lastUpdated": "2026-10-17T07:41:53.849Z",
+  "lastUpdated": "2026-10-21T08:28:10.721Z",
   "topics": [
     {
       "id": "geo-001",
@@ -118,9 +118,9 @@
         "2026 代理协议演进"
       ],
       "focusAngle": "解读 SS-2022 为什么要废弃老旧流加密、引入固定长度会话头与单向单目密钥派生，分析骨干网主动重放嗅探下的防御机制。",
-      "published": false,
-      "publishedAt": null,
-      "publishedSlug": null
+      "published": true,
+      "publishedAt": "2026-10-21T08:28:10.721Z",
+      "publishedSlug": "shadowsocks-2022-blake3-anti-probing"
     },
     {
       "id": "geo-008",

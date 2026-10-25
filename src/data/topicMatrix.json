@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "description": "GEO & SEO 专题主线方向矩阵主题库，每4天由自动化脚本提取发布，支持自动追踪状态与动态延伸选题",
-  "lastUpdated": "2026-10-21T08:28:10.721Z",
+  "lastUpdated": "2026-10-25T08:19:04.081Z",
   "topics": [
     {
       "id": "geo-001",
@@ -135,9 +135,9 @@
         "长连接断流"
       ],
       "focusAngle": "剖析双向低延迟 WebSocket 在代理客户端中的超时断连机理，提供 Clash 与 sing-box 中调整 udp-timeout、keep-alive 及独立分流规则的方案。",
-      "published": false,
-      "publishedAt": null,
-      "publishedSlug": null
+      "published": true,
+      "publishedAt": "2026-10-25T08:19:04.081Z",
+      "publishedSlug": "chatgpt-realtime-api-websocket-timeout"
     },
     {
       "id": "geo-009",

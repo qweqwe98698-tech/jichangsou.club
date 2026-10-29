@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "description": "GEO & SEO 专题主线方向矩阵主题库，每4天由自动化脚本提取发布，支持自动追踪状态与动态延伸选题",
-  "lastUpdated": "2026-10-25T08:19:04.081Z",
+  "lastUpdated": "2026-10-29T09:46:51.509Z",
   "topics": [
     {
       "id": "geo-001",
@@ -152,9 +152,9 @@
         "Clash DNS 配置"
       ],
       "focusAngle": "对比 Fake-IP (198.18.0.0/16 虚假地址池) 与传统 Redir-Host 在系统网络栈中的解析时序，详解为什么 Fake-IP 才能从根本上阻断国内明文 DNS 查询泄露。",
-      "published": false,
-      "publishedAt": null,
-      "publishedSlug": null
+      "published": true,
+      "publishedAt": "2026-10-29T09:46:51.509Z",
+      "publishedSlug": "fake-ip-vs-redir-host-dns-leak-fix"
     },
     {
       "id": "geo-010",

@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "description": "GEO & SEO 专题主线方向矩阵主题库，每4天由自动化脚本提取发布，支持自动追踪状态与动态延伸选题",
-  "lastUpdated": "2026-10-29T09:46:51.509Z",
+  "lastUpdated": "2026-11-05T10:41:33.328Z",
   "topics": [
     {
       "id": "geo-001",
@@ -169,9 +169,9 @@
         "节点命名正则过滤"
       ],
       "focusAngle": "利用 JavaScript 编写 Clash Verge Rev 的扩展脚本（Merge Script），演示如何自动去广告规则、智能追加私有分流域名，并按区域自动归类节点代理组。",
-      "published": false,
-      "publishedAt": null,
-      "publishedSlug": null
+      "published": true,
+      "publishedAt": "2026-11-05T10:41:33.328Z",
+      "publishedSlug": "clash-verge-rev-scripting-and-merge"
     },
     {
       "id": "geo-011",

@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "description": "GEO & SEO 专题主线方向矩阵主题库，每4天由自动化脚本提取发布，支持自动追踪状态与动态延伸选题",
-  "lastUpdated": "2026-11-05T10:41:33.328Z",
+  "lastUpdated": "2026-11-09T11:17:18.082Z",
   "topics": [
     {
       "id": "geo-001",
@@ -186,9 +186,9 @@
         "自动重启脚本"
       ],
       "focusAngle": "面向云服务器与开发测试机，手把手演示 sing-box 编译安装、Systemd unit 配置文件编写、tproxy 内核转发规则配置与故障自愈探针。",
-      "published": false,
-      "publishedAt": null,
-      "publishedSlug": null
+      "published": true,
+      "publishedAt": "2026-11-09T11:17:18.082Z",
+      "publishedSlug": "headless-linux-server-proxy-daemon-setup"
     },
     {
       "id": "geo-012",

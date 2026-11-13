@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "description": "GEO & SEO 专题主线方向矩阵主题库，每4天由自动化脚本提取发布，支持自动追踪状态与动态延伸选题",
-  "lastUpdated": "2026-11-09T11:17:18.082Z",
+  "lastUpdated": "2026-11-13T10:48:33.217Z",
   "topics": [
     {
       "id": "geo-001",
@@ -203,9 +203,9 @@
         "企业跨国办公分流"
       ],
       "focusAngle": "分析企业与重度开发者在多出口场景下的容灾诉求，讲解 round-robin 轮询、consistent-hashing 一致性哈希与 fallback 自动切流在 Surge 中的实现逻辑。",
-      "published": false,
-      "publishedAt": null,
-      "publishedSlug": null
+      "published": true,
+      "publishedAt": "2026-11-13T10:48:33.217Z",
+      "publishedSlug": "surge-enterprise-outbound-load-balance"
     },
     {
       "id": "geo-013",

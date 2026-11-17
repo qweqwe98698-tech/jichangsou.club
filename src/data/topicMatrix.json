@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "description": "GEO & SEO 专题主线方向矩阵主题库，每4天由自动化脚本提取发布，支持自动追踪状态与动态延伸选题",
-  "lastUpdated": "2026-11-13T10:48:33.217Z",
+  "lastUpdated": "2026-11-17T11:40:55.237Z",
   "topics": [
     {
       "id": "geo-001",
@@ -220,9 +220,9 @@
         "指纹浏览器伪装"
       ],
       "focusAngle": "通过 STUN 协议原理演示即便开启全局代理，浏览器 WebRTC API 仍可探测到内网与公网真实 IP 的致命缺陷，给出各主流浏览器与客户端的加固方案。",
-      "published": false,
-      "publishedAt": null,
-      "publishedSlug": null
+      "published": true,
+      "publishedAt": "2026-11-17T11:40:55.237Z",
+      "publishedSlug": "webrtc-ip-leak-browser-fingerprint-defense"
     },
     {
       "id": "geo-014",

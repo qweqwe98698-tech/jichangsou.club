@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "description": "GEO & SEO 专题主线方向矩阵主题库，每4天由自动化脚本提取发布，支持自动追踪状态与动态延伸选题",
-  "lastUpdated": "2026-11-17T11:40:55.237Z",
+  "lastUpdated": "2026-11-21T10:52:31.365Z",
   "topics": [
     {
       "id": "geo-001",
@@ -237,9 +237,9 @@
         "家庭宽带住宅节点"
       ],
       "focusAngle": "科普为什么流媒体平台对机房 IP 只开放自制剧，揭秘机场服务商背后的 DNS 解锁与落地机双层分流架构，教你一眼看出真解锁还是假伪装。",
-      "published": false,
-      "publishedAt": null,
-      "publishedSlug": null
+      "published": true,
+      "publishedAt": "2026-11-21T10:52:31.365Z",
+      "publishedSlug": "netflix-disney-non-original-unlock-logic"
     },
     {
       "id": "geo-015",
